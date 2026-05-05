@@ -1,8 +1,9 @@
 import { Link } from 'react-router-dom';
+import { HashLink } from 'react-router-hash-link';
 import { ShoppingBag, Mail, Phone, MapPin } from 'lucide-react';
 
 const Footer = () => (
-  <footer id="contact" className="bg-gray-900 text-gray-300 pt-14 pb-6 px-6 mt-16">
+  <footer id="contact" className="bg-gray-900 text-gray-300 pt-14 pb-6 px-6 mt-16 scroll-mt-20">
     <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-10">
       <div>
         <div className="flex items-center gap-2 text-white font-bold text-xl mb-3"><ShoppingBag className="w-6 h-6 text-blue-400" />MyShop</div>
@@ -12,7 +13,7 @@ const Footer = () => (
         <h3 className="text-white font-bold mb-4">Quick Links</h3>
         <div className="flex flex-col gap-2 text-sm">
           <Link to="/" className="hover:text-white transition-colors">Home</Link>
-          <a href="#products" className="hover:text-white transition-colors">Products</a>
+          <HashLink smooth to="/#products" className="hover:text-white transition-colors">Products</HashLink>
           <Link to="/cart" className="hover:text-white transition-colors">Cart</Link>
         </div>
       </div>

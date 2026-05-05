@@ -1,4 +1,5 @@
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
 import { useApp } from './context/AppContext';
 import Header from './Components/Header';
 import Footer from './Components/Footer';
@@ -15,10 +16,23 @@ const Protected = ({ children }) => {
   return login ? children : <Navigate to="/login" replace />;
 };
 
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth'
+    });
+  }, [pathname]);
+  return null;
+};
+
 const App = () => {
   const { toast } = useApp();
   return (
     <div className="min-h-screen flex flex-col bg-neutral-50">
+      <ScrollToTop />
       <Header />
       <main className="flex-1">
         <Routes>

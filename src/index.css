@@ -4,6 +4,9 @@
 @tailwind utilities;
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
   body { @apply font-poppins bg-neutral-50 text-neutral-900 antialiased; }
 }
 @layer components {

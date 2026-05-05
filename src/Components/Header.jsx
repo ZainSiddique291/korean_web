@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { HashLink } from 'react-router-hash-link';
 import { ShoppingBag, ShoppingCart, User, Menu, X, Search } from 'lucide-react';
 import { useApp } from '../context/AppContext';
 
@@ -23,9 +24,9 @@ const Header = () => {
           <input onChange={handleSearch} placeholder="Search products..." className="bg-transparent flex-1 text-sm outline-none text-gray-700 placeholder-gray-400" />
         </div>
         <nav className="hidden md:flex items-center gap-5 mr-2">
-          <Link to="/" className="text-sm font-medium text-gray-600 hover:text-blue-500 transition-colors">Home</Link>
-          <a href="/#products" className="text-sm font-medium text-gray-600 hover:text-blue-500 transition-colors">Products</a>
-          <a href="#contact" className="text-sm font-medium text-gray-600 hover:text-blue-500 transition-colors">Contact</a>
+          <HashLink smooth to="/#home" className="text-sm font-medium text-gray-600 hover:text-blue-500 transition-colors">Home</HashLink>
+          <HashLink smooth to="/#products" className="text-sm font-medium text-gray-600 hover:text-blue-500 transition-colors">Products</HashLink>
+          <HashLink smooth to="#contact" className="text-sm font-medium text-gray-600 hover:text-blue-500 transition-colors">Contact</HashLink>
         </nav>
         <div className="flex items-center gap-1 ml-auto">
           <div className="relative">
@@ -62,8 +63,8 @@ const Header = () => {
             <input onChange={handleSearch} placeholder="Search products..." className="bg-transparent flex-1 text-sm outline-none" />
           </div>
           <Link to="/" onClick={() => setMenuOpen(false)} className="px-3 py-2 rounded-xl text-sm font-medium text-gray-700 hover:bg-blue-50 hover:text-blue-600">Home</Link>
-          <a href="/#products" onClick={() => setMenuOpen(false)} className="px-3 py-2 rounded-xl text-sm font-medium text-gray-700 hover:bg-blue-50 hover:text-blue-600">Products</a>
-          <a href="#contact" onClick={() => setMenuOpen(false)} className="px-3 py-2 rounded-xl text-sm font-medium text-gray-700 hover:bg-blue-50 hover:text-blue-600">Contact</a>
+          <HashLink smooth to="/#products" onClick={() => setMenuOpen(false)} className="px-3 py-2 rounded-xl text-sm font-medium text-gray-700 hover:bg-blue-50 hover:text-blue-600">Products</HashLink>
+          <HashLink smooth to="#contact" onClick={() => setMenuOpen(false)} className="px-3 py-2 rounded-xl text-sm font-medium text-gray-700 hover:bg-blue-50 hover:text-blue-600">Contact</HashLink>
         </div>
       )}
     </header>

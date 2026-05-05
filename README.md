@@ -11,6 +11,7 @@ A modern, responsive e-commerce web application built with **React 19**, **Vite*
 - **User Authentication**: Login/Signup with protected routes
 - **Checkout Flow**: Cart → Shipping → Order confirmation
 - **Responsive Design**: Mobile-first, works on all devices
+- **Smooth Scrolling Navigation**: HashLink for section jumps + page transitions
 - **Smooth Animations**: Framer Motion and Tailwind animations
 - **Toast Notifications**: User feedback for actions
 - **Modern UI**: Custom Tailwind theme with Poppins font
