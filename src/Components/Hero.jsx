@@ -1,25 +1,78 @@
-import { ShoppingBag, Zap } from 'lucide-react';
+import { HashLink } from 'react-router-hash-link';
+import { Sparkles, ShieldCheck, Truck, Banknote, Award } from 'lucide-react';
 
-const Hero = () => (
-  <section id="home" className="hero-bg min-h-[72vh] flex items-center justify-center text-center px-4 py-24">
-    <div className="max-w-4xl mx-auto">
-      <span className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 text-white text-sm font-semibold mb-8">
-        <Zap className="w-4 h-4 text-yellow-300" />Winter Sale — Up to 50% Off
-      </span>
-      <h1 className="text-5xl md:text-7xl font-black text-white leading-tight mb-6">
-        Discover Amazing<br />
-        <span className="bg-gradient-to-r from-yellow-300 via-emerald-300 to-blue-300 bg-clip-text text-transparent">Deals Today</span>
-      </h1>
-      <p className="text-lg md:text-xl text-white/80 max-w-xl mx-auto mb-10 font-medium">Fashion, electronics and home essentials — curated just for you.</p>
-      <div className="flex flex-col sm:flex-row gap-4 justify-center">
-        <a href="#products" className="inline-flex items-center justify-center gap-2 bg-white text-blue-600 px-8 py-4 rounded-2xl font-bold text-lg hover:bg-blue-50 active:scale-95 transition-all shadow-xl">
-          <ShoppingBag className="w-5 h-5" />Shop Now
-        </a>
-        <a href="#contact" className="inline-flex items-center justify-center px-8 py-4 rounded-2xl font-semibold text-lg border-2 border-white/50 text-white hover:bg-white/10 transition-all">
-          Contact Us
-        </a>
+const Hero = () => {
+  return (
+    <section id="home" className="relative bg-[#FAF3EB] border-b border-surface-200">
+      {/* Main Hero Banner Container */}
+      <div className="max-w-7xl mx-auto px-2 sm:px-4 pt-3 sm:pt-6 pb-4 sm:pb-8">
+        <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-sm border border-[#ede3d8] bg-[#FAF3EB]">
+          {/* Hero Banner Image */}
+          <picture className="w-full block">
+            <img
+              src="/hero-banner.png"
+              alt="SEORA K-Beauty Skin Solution - Clear, Glowing Skin Starts Here"
+              className="w-full h-auto object-contain max-h-[580px] mx-auto select-none"
+              loading="eager"
+            />
+          </picture>
+
+          {/* Invisible / Interactive Link Layer for Shop Now Button */}
+          <HashLink
+            smooth
+            to="/#products"
+            className="absolute inset-0 z-10 cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary-500 rounded-3xl"
+            aria-label="Shop Korean Skincare Collection"
+          >
+            <span className="sr-only">Shop Now</span>
+          </HashLink>
+        </div>
+
+        {/* Korean Skincare Trust & Value Props Strip (Inspired by reference site) */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 mt-4 sm:mt-6">
+          <div className="flex items-center gap-3 p-3 sm:p-4 rounded-2xl bg-white border border-surface-200/80 shadow-xs">
+            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-primary-50 flex items-center justify-center shrink-0">
+              <ShieldCheck className="w-5 h-5 text-primary-600" />
+            </div>
+            <div>
+              <h4 className="text-xs sm:text-sm font-semibold text-kdark-900 leading-snug">100% Original</h4>
+              <p className="text-[11px] text-gray-500 hidden sm:block">Direct from official Seoul labs</p>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-3 p-3 sm:p-4 rounded-2xl bg-white border border-surface-200/80 shadow-xs">
+            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-brand-50 flex items-center justify-center shrink-0">
+              <Truck className="w-5 h-5 text-brand-600" />
+            </div>
+            <div>
+              <h4 className="text-xs sm:text-sm font-semibold text-kdark-900 leading-snug">Express Delivery</h4>
+              <p className="text-[11px] text-gray-500 hidden sm:block">Fast shipping nationwide</p>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-3 p-3 sm:p-4 rounded-2xl bg-white border border-surface-200/80 shadow-xs">
+            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-sage-50 flex items-center justify-center shrink-0">
+              <Banknote className="w-5 h-5 text-sage-600" />
+            </div>
+            <div>
+              <h4 className="text-xs sm:text-sm font-semibold text-kdark-900 leading-snug">COD Available</h4>
+              <p className="text-[11px] text-gray-500 hidden sm:block">Pay securely on delivery</p>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-3 p-3 sm:p-4 rounded-2xl bg-white border border-surface-200/80 shadow-xs">
+            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-primary-50 flex items-center justify-center shrink-0">
+              <Award className="w-5 h-5 text-primary-600" />
+            </div>
+            <div>
+              <h4 className="text-xs sm:text-sm font-semibold text-kdark-900 leading-snug">Korean Science</h4>
+              <p className="text-[11px] text-gray-500 hidden sm:block">Gentle & clinically proven</p>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-  </section>
-);
+    </section>
+  );
+};
+
 export default Hero;

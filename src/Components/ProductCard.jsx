@@ -1,37 +1,106 @@
 import { Link } from 'react-router-dom';
-import { ShoppingCart, Star } from 'lucide-react';
+import { ShoppingBag, Star, Check } from 'lucide-react';
+import { useState } from 'react';
 import { useApp } from '../context/AppContext';
 
 const ProductCard = ({ product }) => {
   const { addToCart, showToast } = useApp();
-  const { id, title, price, thumbnail, rating, discountPercentage } = product;
+  const [justAdded, setJustAdded] = useState(false);
+  const { id, title, price, thumbnail, rating, discountPercentage, category } = product;
 
   const handleAdd = (e) => {
     e.preventDefault();
+    e.stopPropagation();
     addToCart(product);
-    showToast(`Added to cart ✅`);
+    setJustAdded(true);
+    showToast(`Added to your shopping bag ✨`);
+    setTimeout(() => setJustAdded(false), 1200);
   };
 
+  const originalPrice = discountPercentage && discountPercentage > 5
+    ? (price / (1 - discountPercentage / 100)).toFixed(2)
+    : null;
+
   return (
-    <Link to={`/product/${id}`} className="group bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 overflow-hidden flex flex-col">
-      <div className="relative overflow-hidden bg-gray-50 h-52">
-        <img src={thumbnail} alt={title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-        {discountPercentage > 10 && <span className="absolute top-2 left-2 bg-red-500 text-white text-xs font-bold px-2 py-0.5 rounded-lg">-{Math.round(discountPercentage)}%</span>}
+    <Link
+      to={`/product/${id}`}
+      className="group bg-white rounded-2xl border border-surface-200/90 hover:border-primary-300 shadow-xs hover:shadow-md transition-all duration-300 overflow-hidden flex flex-col justify-between"
+    >
+      <div>
+        {/* Thumbnail Container */}
+        <div className="relative overflow-hidden bg-surface-50 aspect-square flex items-center justify-center p-3">
+          <img
+            src={thumbnail}
+            alt={title}
+            loading="lazy"
+            className="w-full h-full object-contain mix-blend-multiply group-hover:scale-105 transition-transform duration-500 ease-out"
+          />
+
+          {/* Badges */}
+          <div className="absolute top-2.5 left-2.5 flex flex-col gap-1 z-10">
+            {discountPercentage > 8 && (
+              <span className="bg-kaccent-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full shadow-xs">
+                -{Math.round(discountPercentage)}%
+              </span>
+            )}
+            <span className="bg-white/90 backdrop-blur-xs text-primary-800 border border-surface-200 text-[10px] font-semibold px-2 py-0.5 rounded-full">
+              Seoul Sourced
+            </span>
+          </div>
+        </div>
+
+        {/* Product Details */}
+        <div className="p-3.5 sm:p-4">
+          <div className="flex items-center justify-between gap-1 mb-1">
+            <span className="text-[11px] font-medium uppercase tracking-wider text-brand-600 truncate">
+              {category || 'Skincare'}
+            </span>
+            <div className="flex items-center gap-1 text-[11px] font-semibold text-kdark-700 shrink-0">
+              <Star className="w-3 h-3 text-brand-500 fill-brand-500" />
+              <span>{rating ? rating.toFixed(1) : '4.9'}</span>
+            </div>
+          </div>
+
+          <h3 className="text-xs sm:text-sm font-semibold text-kdark-900 line-clamp-2 min-h-[2.5rem] leading-snug group-hover:text-primary-700 transition-colors">
+            {title}
+          </h3>
+        </div>
       </div>
-      <div className="p-4 flex flex-col flex-1">
-        <h3 className="text-sm font-semibold text-gray-800 line-clamp-2 mb-2 flex-1">{title}</h3>
-        <div className="flex items-center gap-1 mb-3">
-          <Star className="w-3.5 h-3.5 text-yellow-400 fill-yellow-400" />
-          <span className="text-xs text-gray-500">{rating?.toFixed(1)}</span>
+
+      {/* Price & Action Button */}
+      <div className="p-3.5 sm:p-4 pt-0">
+        <div className="flex items-baseline gap-1.5 mb-3">
+          <span className="text-base sm:text-lg font-bold text-kdark-900 font-serif">
+            ${Number(price).toFixed(2)}
+          </span>
+          {originalPrice && (
+            <span className="text-xs text-gray-400 line-through">
+              ${originalPrice}
+            </span>
+          )}
         </div>
-        <div className="flex items-center justify-between">
-          <span className="text-lg font-bold text-gray-900">${price}</span>
-          <button onClick={handleAdd} className="flex items-center gap-1.5 bg-blue-500 hover:bg-blue-600 text-white text-xs font-semibold px-3 py-2 rounded-xl active:scale-95 transition-all">
-            <ShoppingCart className="w-3.5 h-3.5" />Add
-          </button>
-        </div>
+
+        <button
+          onClick={handleAdd}
+          className={`w-full py-2 sm:py-2.5 px-3 rounded-full text-xs font-semibold flex items-center justify-center gap-1.5 transition-all duration-200 active:scale-[0.98] ${
+            justAdded
+              ? 'bg-emerald-600 text-white'
+              : 'bg-primary-600 hover:bg-primary-700 text-white shadow-xs'
+          }`}
+        >
+          {justAdded ? (
+            <>
+              <Check className="w-3.5 h-3.5" /> Added
+            </>
+          ) : (
+            <>
+              <ShoppingBag className="w-3.5 h-3.5" /> Add to Bag
+            </>
+          )}
+        </button>
       </div>
     </Link>
   );
 };
+
 export default ProductCard;
