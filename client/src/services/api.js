@@ -1,8 +1,18 @@
 import axios from 'axios';
 
+// Resolve dynamic API URL from environment variable VITE_API_URL, defaulting to '/api' for local dev proxy
+const getBaseURL = () => {
+  const envUrl = import.meta.env.VITE_API_URL;
+  if (!envUrl) return '/api';
+  const cleaned = envUrl.replace(/\/+$/, '');
+  return cleaned.endsWith('/api') ? cleaned : `${cleaned}/api`;
+};
+
+const baseURL = getBaseURL();
+
 // Create configured Axios instance
 const api = axios.create({
-  baseURL: '/api',
+  baseURL,
   withCredentials: true, // Send HTTP-only cookies (refreshToken) with requests
   headers: {
     'Content-Type': 'application/json',
@@ -92,7 +102,7 @@ api.interceptors.response.use(
 
         // Call the refresh endpoint (passes cookie and/or body refreshToken)
         const { data } = await axios.post(
-          '/api/auth/refresh',
+          `${baseURL}/auth/refresh`,
           { refreshToken },
           { withCredentials: true }
         );

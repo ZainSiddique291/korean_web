@@ -16,7 +16,6 @@ import { notFound, errorHandler } from './middleware/errorMiddleware.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const clientDistPath = path.resolve(__dirname, '../client/dist');
 
 // Load environment variables from local server directory and workspace root
 dotenv.config({ path: path.resolve(__dirname, '.env') });
@@ -36,26 +35,43 @@ const allowedOrigins = [
   'http://localhost:3000',
   'http://localhost:5175',
   process.env.CLIENT_URL,
+  process.env.FRONTEND_URL,
   process.env.ADMIN_URL,
 ].filter(Boolean);
 
 app.use(
   cors({
     origin: (origin, callback) => {
-      // Allow requests with no origin (like mobile apps, curl, postman) or localhost origins
-      if (!origin || allowedOrigins.includes(origin) || /^http:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/.test(origin)) {
+      // Allow requests with no origin (like mobile apps, curl, postman)
+      if (!origin) return callback(null, true);
+
+      // Check against explicit allowed origins or localhost/127.0.0.1 or Vercel preview domains
+      if (
+        allowedOrigins.includes(origin) ||
+        /^http:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/.test(origin) ||
+        /\.vercel\.app$/.test(origin)
+      ) {
         return callback(null, true);
       }
-      return callback(null, true); // Permissive in dev to avoid blocking separate admin panel
+      return callback(null, true); // Fallback to avoid blocking valid requests
     },
     credentials: true,
   })
 );
+
 app.use(express.json());
 app.use(cookieParser());
 app.use(morgan('dev'));
 
-// API Health Check
+// API Root & Health Check
+app.get('/', (req, res) => {
+  res.json({
+    message: '🌸 SEORA Backend API Server',
+    health: '/api/health',
+    status: 'active',
+  });
+});
+
 app.get('/api/health', (req, res) => {
   res.json({
     status: 'ok',
@@ -72,19 +88,6 @@ app.use('/api/orders', orderRoutes);
 app.use('/api/admin', adminRoutes);
 app.use('/api/cart', cartRoutes);
 
-// Serve static assets from built client
-app.use(express.static(clientDistPath));
-
-// SPA Fallback: serve index.html for non-API GET requests
-app.get('*', (req, res, next) => {
-  if (req.path.startsWith('/api')) {
-    return next();
-  }
-  res.sendFile(path.join(clientDistPath, 'index.html'), (err) => {
-    if (err) next();
-  });
-});
-
 // Error Handling Middlewares
 app.use(notFound);
 app.use(errorHandler);
@@ -93,7 +96,7 @@ const PORT = process.env.PORT || 5000;
 
 if (!process.env.VERCEL) {
   const server = app.listen(PORT, () => {
-    console.log(`🌸 SEORA Backend Server Running on http://localhost:${PORT}`);
+    console.log(`🌸 SEORA Backend Server Running on port ${PORT}`);
   });
 
   server.on('error', (err) => {
