@@ -19,12 +19,8 @@ const LoginPage = () => {
     }
     setLoading(true);
     try {
-      const loggedUser = await loginUser({ email, password });
-      if (loggedUser?.role === 'admin') {
-        navigate('/admin');
-      } else {
-        navigate('/account');
-      }
+      await loginUser({ email, password });
+      navigate('/account');
     } catch {
       // Toast error handled in loginUser
     } finally {
@@ -44,23 +40,23 @@ const LoginPage = () => {
 
   return (
     <div className="min-h-[85vh] flex items-center justify-center bg-surface-50 px-4 py-12">
-      <div className="w-full max-w-md bg-white rounded-3xl shadow-xl p-8 border border-surface-200 animate-fade-in">
-        <div className="flex items-center gap-3 mb-6">
-          <div className="w-10 h-10 rounded-2xl bg-primary-600 flex items-center justify-center text-white">
+      <div className="w-full max-w-md bg-white rounded-3xl shadow-xl p-8 sm:p-9 border border-surface-200 animate-fade-in">
+        <div className="flex items-center gap-3.5 mb-7">
+          <div className="w-11 h-11 rounded-2xl bg-primary-600 flex items-center justify-center text-white shadow-md shadow-primary-500/20">
             <LogIn className="w-5 h-5" />
           </div>
           <div>
-            <h1 className="text-xl font-bold text-kdark-900 font-serif">Welcome Back</h1>
-            <p className="text-xs text-gray-500">Sign in to your SEORA account</p>
+            <h1 className="text-2xl font-bold text-kdark-900 font-serif">Welcome Back</h1>
+            <p className="text-sm text-gray-500">Sign in to your SEORA account</p>
           </div>
         </div>
 
         {/* 1-Click Fast Auth */}
-        <div className="space-y-2.5 mb-6">
+        <div className="space-y-3 mb-6">
           <button
             type="button"
             onClick={handleGoogle}
-            className="w-full flex items-center justify-center gap-3 py-2.5 px-4 rounded-xl border border-surface-200 bg-white hover:bg-surface-50 text-kdark-800 text-xs font-semibold transition-all shadow-xs"
+            className="w-full flex items-center justify-center gap-3 py-3 px-4 rounded-xl border border-surface-200 bg-white hover:bg-surface-50 text-kdark-800 text-sm font-semibold transition-all shadow-xs"
           >
             <svg className="w-4 h-4" viewBox="0 0 24 24">
               <path
@@ -86,33 +82,33 @@ const LoginPage = () => {
           <button
             type="button"
             onClick={handleGuest}
-            className="w-full flex items-center justify-center gap-2 py-2 px-4 rounded-xl border border-dashed border-primary-300 bg-primary-50/60 hover:bg-primary-50 text-primary-700 text-xs font-semibold transition-all"
+            className="w-full flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl border border-dashed border-primary-300 bg-primary-50/60 hover:bg-primary-50 text-primary-700 text-sm font-semibold transition-all"
           >
             <Sparkles className="w-4 h-4 text-primary-600" />
             Continue as Guest (No Account Required)
           </button>
         </div>
 
-        <div className="relative flex items-center justify-center my-4">
+        <div className="relative flex items-center justify-center my-5">
           <div className="border-t border-surface-200 w-full" />
-          <span className="bg-white px-3 text-[10px] uppercase tracking-wider text-gray-400 absolute">or sign in with email</span>
+          <span className="bg-white px-3 text-xs uppercase tracking-wider text-gray-400 absolute">or sign in with email</span>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-3.5 text-xs">
+        <form onSubmit={handleSubmit} className="space-y-4 text-sm">
           <div>
-            <label className="block font-semibold text-kdark-700 mb-1">Email Address</label>
+            <label className="block font-semibold text-kdark-700 mb-1.5">Email Address</label>
             <input
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
               placeholder="you@example.com"
-              className="input-field"
+              className="input-field text-sm"
             />
           </div>
 
           <div>
-            <label className="block font-semibold text-kdark-700 mb-1">Password</label>
+            <label className="block font-semibold text-kdark-700 mb-1.5">Password</label>
             <div className="relative">
               <input
                 type={showPw ? 'text' : 'password'}
@@ -120,14 +116,14 @@ const LoginPage = () => {
                 onChange={(e) => setPassword(e.target.value)}
                 required
                 placeholder="••••••••"
-                className="input-field pr-10"
+                className="input-field pr-10 text-sm"
               />
               <button
                 type="button"
                 onClick={() => setShowPw(!showPw)}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                className="absolute right-3.5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
               >
-                {showPw ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                {showPw ? <EyeOff className="w-4.5 h-4.5" /> : <Eye className="w-4.5 h-4.5" />}
               </button>
             </div>
           </div>
@@ -135,20 +131,14 @@ const LoginPage = () => {
           <button
             type="submit"
             disabled={loading}
-            className="w-full btn-primary py-3 text-xs font-semibold flex items-center justify-center gap-2 mt-4 disabled:opacity-60"
+            className="w-full btn-primary py-3.5 text-sm font-semibold flex items-center justify-center gap-2 mt-5 disabled:opacity-60"
           >
             {loading ? 'Authenticating...' : 'Sign In to Account'}
             {!loading && <ArrowRight className="w-4 h-4" />}
           </button>
         </form>
 
-        <div className="mt-5 p-3 rounded-2xl bg-surface-100 border border-surface-200 text-[11px] text-gray-500 space-y-1">
-          <p className="font-semibold text-kdark-800">Quick Demo Logins:</p>
-          <p>👑 <span className="font-medium text-primary-700">Admin:</span> admin@store.com / admin123</p>
-          <p>👤 <span className="font-medium text-primary-700">Customer:</span> amina.t@example.com / customer123</p>
-        </div>
-
-        <p className="text-xs text-center text-gray-500 mt-5">
+        <p className="text-sm text-center text-gray-500 mt-6">
           Don't have an account?{' '}
           <Link to="/signup" className="text-primary-700 font-bold hover:underline">
             Create one

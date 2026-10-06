@@ -21,7 +21,7 @@ const Filters = () => {
           <button
             key={c.id}
             onClick={() => setFilter(c.value)}
-            className={`whitespace-nowrap px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all duration-200 shrink-0 flex items-center gap-1.5 ${
+            className={`whitespace-nowrap px-4.5 py-2.5 rounded-full text-sm sm:text-base font-semibold transition-all duration-200 shrink-0 flex items-center gap-2 ${
               isActive
                 ? 'bg-primary-600 text-white shadow-sm ring-2 ring-primary-600/20'
                 : 'bg-white text-kdark-700 border border-surface-200 hover:border-primary-300 hover:text-primary-700'
@@ -29,7 +29,7 @@ const Filters = () => {
           >
             {IconComponent && (
               <IconComponent
-                className={`w-3.5 h-3.5 ${isActive ? 'text-white' : c.color || 'text-brand-500'}`}
+                className={`w-4 h-4 ${isActive ? 'text-white' : c.color || 'text-brand-500'}`}
               />
             )}
             {c.label}

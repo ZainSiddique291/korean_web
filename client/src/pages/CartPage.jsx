@@ -49,8 +49,8 @@ const CartPage = () => {
           </div>
 
           {/* Free shipping indicator */}
-          <div className="bg-white p-3 rounded-2xl border border-surface-200 text-xs text-kdark-800 flex items-center gap-2">
-            <Sparkles className="w-4 h-4 text-brand-500 shrink-0" />
+          <div className="bg-white p-3.5 sm:p-4 rounded-2xl border border-surface-200 text-sm text-kdark-800 flex items-center gap-2.5 shadow-2xs">
+            <Sparkles className="w-5 h-5 text-brand-500 shrink-0" />
             {isFreeShipping ? (
               <span className="font-semibold text-emerald-700">
                 🎉 Congratulations! You have unlocked Free Express Shipping!
@@ -66,84 +66,88 @@ const CartPage = () => {
         {/* Cart Layout: List on Left, Summary on Right */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           {/* Items List */}
-          <div className="lg:col-span-8 space-y-3">
+          <div className="lg:col-span-8 space-y-3.5">
             {cart.map((item) => {
               const itemId = item.id || item._id;
               const { title, price, thumbnail, quantity, category } = item;
               return (
                 <div
                   key={itemId}
-                  className="bg-white p-4 sm:p-5 rounded-2xl border border-surface-200/90 shadow-xs flex items-center gap-4 hover:border-primary-200 transition-colors"
+                  className="bg-white p-4 sm:p-5 rounded-2xl border border-surface-200/90 shadow-xs flex flex-col sm:flex-row sm:items-center justify-between gap-4 hover:border-primary-200 transition-colors"
                 >
-                  <div className="w-18 h-18 sm:w-20 sm:h-20 bg-surface-50 rounded-xl overflow-hidden shrink-0 flex items-center justify-center p-2 border border-surface-200">
-                    <img
-                      src={thumbnail}
-                      alt={title}
-                      className="w-full h-full object-contain mix-blend-multiply"
-                    />
+                  <div className="flex items-center gap-3.5 sm:gap-4 flex-1 min-w-0">
+                    <div className="w-20 h-20 sm:w-22 sm:h-22 bg-surface-50 rounded-xl overflow-hidden shrink-0 flex items-center justify-center p-2 border border-surface-200">
+                      <img
+                        src={thumbnail}
+                        alt={title}
+                        className="w-full h-full object-contain mix-blend-multiply"
+                      />
+                    </div>
+
+                    <div className="flex-1 min-w-0">
+                      <span className="text-xs uppercase tracking-wider font-bold text-brand-600 block mb-0.5">
+                        {category || 'Skincare'}
+                      </span>
+                      <Link
+                        to={`/product/${itemId}`}
+                        className="text-sm sm:text-base font-bold text-kdark-900 hover:text-primary-700 transition-colors line-clamp-1"
+                      >
+                        {title}
+                      </Link>
+                      <p className="text-sm font-bold text-primary-800 mt-1 font-serif">
+                        ${Number(price).toFixed(2)}
+                      </p>
+                    </div>
                   </div>
 
-                  <div className="flex-1 min-w-0">
-                    <span className="text-[10px] uppercase tracking-wider font-semibold text-brand-600 block mb-0.5">
-                      {category || 'Skincare'}
-                    </span>
-                    <Link
-                      to={`/product/${itemId}`}
-                      className="text-xs sm:text-sm font-semibold text-kdark-900 hover:text-primary-700 transition-colors line-clamp-1"
-                    >
-                      {title}
-                    </Link>
-                    <p className="text-xs font-bold text-primary-800 mt-1 font-serif">
-                      ${Number(price).toFixed(2)}
-                    </p>
-                  </div>
+                  <div className="flex items-center justify-between sm:justify-end gap-3 sm:gap-5 border-t sm:border-t-0 pt-2 sm:pt-0">
+                    {/* Quantity Controls */}
+                    <div className="flex items-center gap-2 shrink-0 bg-surface-100 rounded-full p-1 border border-surface-200">
+                      <button
+                        onClick={() => updateQty(itemId, -1)}
+                        className="w-7 h-7 rounded-full bg-white flex items-center justify-center text-sm font-bold text-gray-700 hover:bg-surface-200 transition-colors"
+                      >
+                        -
+                      </button>
+                      <span className="w-7 text-center text-sm font-bold text-kdark-900">
+                        {quantity}
+                      </span>
+                      <button
+                        onClick={() => updateQty(itemId, 1)}
+                        className="w-7 h-7 rounded-full bg-white flex items-center justify-center text-sm font-bold text-gray-700 hover:bg-surface-200 transition-colors"
+                      >
+                        +
+                      </button>
+                    </div>
 
-                  {/* Quantity Controls */}
-                  <div className="flex items-center gap-1.5 shrink-0 bg-surface-100 rounded-full p-1 border border-surface-200">
+                    {/* Subtotal for line item */}
+                    <div className="text-right shrink-0 min-w-[80px]">
+                      <span className="text-base sm:text-lg font-bold text-kdark-900 font-serif">
+                        ${(Number(price) * quantity).toFixed(2)}
+                      </span>
+                    </div>
+
+                    {/* Delete button */}
                     <button
-                      onClick={() => updateQty(itemId, -1)}
-                      className="w-6 h-6 rounded-full bg-white flex items-center justify-center text-xs font-bold text-gray-600 hover:bg-surface-200 transition-colors"
+                      onClick={() => removeFromCart(itemId)}
+                      className="p-2 text-gray-400 hover:text-kaccent-600 hover:bg-kaccent-50 rounded-xl transition-colors shrink-0"
+                      title="Remove item"
                     >
-                      -
-                    </button>
-                    <span className="w-6 text-center text-xs font-bold text-kdark-900">
-                      {quantity}
-                    </span>
-                    <button
-                      onClick={() => updateQty(itemId, 1)}
-                      className="w-6 h-6 rounded-full bg-white flex items-center justify-center text-xs font-bold text-gray-600 hover:bg-surface-200 transition-colors"
-                    >
-                      +
+                      <Trash2 className="w-5 h-5" />
                     </button>
                   </div>
-
-                  {/* Subtotal for line item */}
-                  <div className="text-right shrink-0 min-w-[70px]">
-                    <span className="text-sm font-bold text-kdark-900 font-serif">
-                      ${(Number(price) * quantity).toFixed(2)}
-                    </span>
-                  </div>
-
-                  {/* Delete button */}
-                  <button
-                    onClick={() => removeFromCart(itemId)}
-                    className="p-2 text-gray-400 hover:text-kaccent-600 hover:bg-kaccent-50 rounded-xl transition-colors shrink-0"
-                    title="Remove item"
-                  >
-                    <Trash2 className="w-4 h-4" />
-                  </button>
                 </div>
               );
             })}
           </div>
 
           {/* Cart Summary */}
-          <div className="lg:col-span-4 bg-white rounded-3xl border border-surface-200 p-6 shadow-sm sticky top-24">
-            <h2 className="text-base font-bold text-kdark-900 font-serif mb-4 pb-3 border-b border-surface-200">
+          <div className="lg:col-span-4 bg-white rounded-3xl border border-surface-200 p-6 sm:p-7 shadow-sm sticky top-24">
+            <h2 className="text-lg sm:text-xl font-bold text-kdark-900 font-serif mb-4 pb-3 border-b border-surface-200">
               Order Summary
             </h2>
 
-            <div className="space-y-3 text-xs sm:text-sm text-gray-600 mb-6">
+            <div className="space-y-3.5 text-sm sm:text-base text-gray-600 mb-6">
               <div className="flex justify-between items-center">
                 <span>Items Subtotal</span>
                 <span className="font-semibold text-kdark-900 font-serif">
@@ -160,9 +164,9 @@ const CartPage = () => {
                 )}
               </div>
 
-              <div className="pt-3 border-t border-surface-200 flex justify-between items-center text-base sm:text-lg">
+              <div className="pt-3.5 border-t border-surface-200 flex justify-between items-center text-lg sm:text-xl">
                 <span className="font-bold text-kdark-900 font-serif">Estimated Total</span>
-                <span className="font-black text-primary-800 font-serif">
+                <span className="font-bold text-primary-800 font-serif">
                   ${finalTotal.toFixed(2)}
                 </span>
               </div>
@@ -171,7 +175,7 @@ const CartPage = () => {
             {/* Checkout Button */}
             <button
               onClick={() => navigate('/shipping')}
-              className="w-full btn-primary py-3.5 text-sm font-semibold flex items-center justify-center gap-2 mb-4"
+              className="w-full btn-primary py-4 text-base font-bold flex items-center justify-center gap-2 mb-4"
             >
               Proceed to Checkout
             </button>

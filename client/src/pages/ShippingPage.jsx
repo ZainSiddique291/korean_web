@@ -282,22 +282,22 @@ const ShippingPage = () => {
           </button>
         </div>
 
-        {/* 5-Step Process Bar */}
-        <div className="bg-white rounded-2xl border border-surface-200 p-4 mb-8 shadow-xs">
-          <div className="flex items-center justify-between max-w-2xl mx-auto text-xs font-medium text-gray-400">
-            <div className={`flex items-center gap-1.5 ${step >= 1 ? 'text-primary-700 font-semibold' : ''}`}>
-              <span className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] ${step >= 1 ? 'bg-primary-600 text-white' : 'bg-surface-200 text-gray-500'}`}>1</span>
-              <span>Shipping</span>
+        {/* 3-Step Process Bar */}
+        <div className="bg-white rounded-2xl border border-surface-200 p-5 mb-8 shadow-xs">
+          <div className="flex items-center justify-between max-w-2xl mx-auto text-sm font-medium text-gray-400">
+            <div className={`flex items-center gap-2 ${step >= 1 ? 'text-primary-700 font-bold' : ''}`}>
+              <span className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold ${step >= 1 ? 'bg-primary-600 text-white shadow-xs' : 'bg-surface-200 text-gray-500'}`}>1</span>
+              <span>1. Shipping</span>
             </div>
-            <span className="w-6 sm:w-12 h-px bg-surface-200"></span>
-            <div className={`flex items-center gap-1.5 ${step >= 2 ? 'text-primary-700 font-semibold' : ''}`}>
-              <span className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] ${step >= 2 ? 'bg-primary-600 text-white' : 'bg-surface-200 text-gray-500'}`}>2</span>
-              <span>Payment</span>
+            <span className="w-8 sm:w-16 h-px bg-surface-200"></span>
+            <div className={`flex items-center gap-2 ${step >= 2 ? 'text-primary-700 font-bold' : ''}`}>
+              <span className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold ${step >= 2 ? 'bg-primary-600 text-white shadow-xs' : 'bg-surface-200 text-gray-500'}`}>2</span>
+              <span>2. Payment</span>
             </div>
-            <span className="w-6 sm:w-12 h-px bg-surface-200"></span>
-            <div className={`flex items-center gap-1.5 ${step >= 3 ? 'text-primary-700 font-semibold' : ''}`}>
-              <span className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] ${step >= 3 ? 'bg-primary-600 text-white' : 'bg-surface-200 text-gray-500'}`}>3</span>
-              <span>Review</span>
+            <span className="w-8 sm:w-16 h-px bg-surface-200"></span>
+            <div className={`flex items-center gap-2 ${step >= 3 ? 'text-primary-700 font-bold' : ''}`}>
+              <span className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold ${step >= 3 ? 'bg-primary-600 text-white shadow-xs' : 'bg-surface-200 text-gray-500'}`}>3</span>
+              <span>3. Review</span>
             </div>
           </div>
         </div>
@@ -309,17 +309,17 @@ const ShippingPage = () => {
             {step === 1 && (
               <form onSubmit={handleProceedToPayment} className="space-y-6">
                 <div>
-                  <h2 className="text-lg font-bold text-kdark-900 font-serif mb-1">
+                  <h2 className="text-xl sm:text-2xl font-bold text-kdark-900 font-serif mb-1">
                     Customer Information
                   </h2>
-                  <p className="text-xs text-gray-500">
+                  <p className="text-sm text-gray-500">
                     We will send delivery tracking and order updates to these details.
                   </p>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-xs font-semibold text-kdark-700 mb-1">Full Name *</label>
+                    <label className="block text-sm font-bold text-kdark-800 mb-1.5">Full Name *</label>
                     <input
                       type="text"
                       name="name"
@@ -332,7 +332,7 @@ const ShippingPage = () => {
                   </div>
 
                   <div>
-                    <label className="block text-xs font-semibold text-kdark-700 mb-1">Email Address *</label>
+                    <label className="block text-sm font-bold text-kdark-800 mb-1.5">Email Address *</label>
                     <input
                       type="email"
                       name="email"
@@ -346,7 +346,7 @@ const ShippingPage = () => {
                 </div>
 
                 <div>
-                  <label className="block text-xs font-semibold text-kdark-700 mb-1">Phone Number (For Courier Contact) *</label>
+                  <label className="block text-sm font-bold text-kdark-800 mb-1.5">Phone Number (For Courier Contact) *</label>
                   <input
                     type="tel"
                     name="phone"

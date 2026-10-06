@@ -96,20 +96,20 @@ const CustomerPanelPage = () => {
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <h1 className="text-xl sm:text-2xl font-bold text-kdark-900 font-serif">
+                <h1 className="text-2xl sm:text-3xl font-bold text-kdark-900 font-serif">
                   {user.name}
                 </h1>
                 {user.isGuest ? (
-                  <span className="text-[10px] font-semibold bg-surface-200 text-gray-600 px-2 py-0.5 rounded-full">
+                  <span className="text-xs font-semibold bg-surface-200 text-gray-700 px-2.5 py-0.5 rounded-full">
                     Guest Account
                   </span>
                 ) : (
-                  <span className="text-[10px] font-semibold bg-primary-100 text-primary-800 px-2 py-0.5 rounded-full">
+                  <span className="text-xs font-semibold bg-primary-100 text-primary-800 px-2.5 py-0.5 rounded-full">
                     Verified Member
                   </span>
                 )}
               </div>
-              <p className="text-xs text-gray-500 mt-0.5 flex items-center gap-2">
+              <p className="text-sm text-gray-500 mt-1 flex items-center gap-2">
                 <span>{user.email || 'No email attached'}</span>
                 <span>•</span>
                 <span>{user.phone || 'No phone attached'}</span>
@@ -123,9 +123,9 @@ const CustomerPanelPage = () => {
                 logout();
                 navigate('/');
               }}
-              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-semibold text-kaccent-600 bg-kaccent-50 hover:bg-kaccent-100 transition-colors"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold text-kaccent-600 bg-kaccent-50 hover:bg-kaccent-100 transition-colors"
             >
-              <LogOut className="w-3.5 h-3.5" /> Sign Out
+              <LogOut className="w-4 h-4" /> Sign Out
             </button>
           </div>
         </div>
@@ -133,23 +133,23 @@ const CustomerPanelPage = () => {
         {/* Dashboard Tabs & Content */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           {/* Sidebar Nav (4 Cols) */}
-          <div className="lg:col-span-4 bg-white rounded-3xl border border-surface-200 p-4 shadow-xs space-y-1">
+          <div className="lg:col-span-4 bg-white rounded-3xl border border-surface-200 p-4 sm:p-5 shadow-xs space-y-2">
             <button
               onClick={() => {
                 setActiveTab('orders');
                 setSelectedOrder(null);
               }}
-              className={`w-full flex items-center justify-between p-3 rounded-2xl text-xs sm:text-sm font-semibold transition-all ${
+              className={`w-full flex items-center justify-between p-3.5 rounded-2xl text-sm sm:text-base font-semibold transition-all ${
                 activeTab === 'orders'
                   ? 'bg-primary-600 text-white shadow-xs'
                   : 'text-kdark-700 hover:bg-surface-100'
               }`}
             >
               <div className="flex items-center gap-2.5">
-                <Package className="w-4 h-4" />
+                <Package className="w-5 h-5" />
                 <span>My Orders & Status</span>
               </div>
-              <span className={`text-xs px-2 py-0.5 rounded-full font-bold ${activeTab === 'orders' ? 'bg-primary-700 text-white' : 'bg-surface-200 text-kdark-800'}`}>
+              <span className={`text-xs px-2.5 py-1 rounded-full font-bold ${activeTab === 'orders' ? 'bg-primary-700 text-white' : 'bg-surface-200 text-kdark-800'}`}>
                 {customerOrders.length}
               </span>
             </button>
@@ -159,25 +159,25 @@ const CustomerPanelPage = () => {
                 setActiveTab('profile');
                 setSelectedOrder(null);
               }}
-              className={`w-full flex items-center justify-between p-3 rounded-2xl text-xs sm:text-sm font-semibold transition-all ${
+              className={`w-full flex items-center justify-between p-3.5 rounded-2xl text-sm sm:text-base font-semibold transition-all ${
                 activeTab === 'profile'
                   ? 'bg-primary-600 text-white shadow-xs'
                   : 'text-kdark-700 hover:bg-surface-100'
               }`}
             >
               <div className="flex items-center gap-2.5">
-                <User className="w-4 h-4" />
+                <User className="w-5 h-5" />
                 <span>Profile & Addresses</span>
               </div>
               <ChevronRight className="w-4 h-4 opacity-50" />
             </button>
 
             <div className="pt-4 border-t border-surface-200 mt-3 p-3">
-              <div className="flex items-center gap-2 text-xs font-semibold text-primary-800 mb-1">
-                <ShieldCheck className="w-4 h-4 text-primary-600" />
+              <div className="flex items-center gap-2 text-sm font-semibold text-primary-800 mb-1">
+                <ShieldCheck className="w-4.5 h-4.5 text-primary-600" />
                 <span>SEORA Korean Guarantee</span>
               </div>
-              <p className="text-[11px] text-gray-500 leading-relaxed">
+              <p className="text-xs text-gray-500 leading-relaxed">
                 Direct importation from Seoul. If you have any inquiries regarding your order, our helpline is open 24/7.
               </p>
             </div>

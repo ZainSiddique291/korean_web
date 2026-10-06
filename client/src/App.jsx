@@ -1,4 +1,4 @@
-import { Routes, Route, useLocation } from 'react-router-dom';
+import { Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useApp } from './context/AppContext';
 import Header from './Components/Header';
@@ -12,7 +12,6 @@ import CartPage from './pages/CartPage';
 import ShippingPage from './pages/ShippingPage';
 import ProductDetailPage from './pages/ProductDetailPage';
 import CustomerPanelPage from './pages/CustomerPanelPage';
-import AdminPage from './pages/AdminPage';
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -28,14 +27,11 @@ const ScrollToTop = () => {
 
 const App = () => {
   const { toast } = useApp();
-  const location = useLocation();
-  const isAdminRoute = location.pathname.startsWith('/admin');
 
   return (
     <div className="min-h-screen flex flex-col bg-surface-50 text-kdark-900 font-sans selection:bg-primary-100 selection:text-primary-800">
       <ScrollToTop />
-      {/* Show store header everywhere except full admin view */}
-      {!isAdminRoute && <Header />}
+      <Header />
 
       <main className="flex-1">
         <Routes>
@@ -45,13 +41,14 @@ const App = () => {
           <Route path="/shipping" element={<ShippingPage />} />
           <Route path="/checkout" element={<ShippingPage />} />
           <Route path="/account" element={<CustomerPanelPage />} />
-          <Route path="/admin" element={<AdminPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignupPage />} />
+          <Route path="/admin" element={<Navigate to="/" replace />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </main>
 
-      {!isAdminRoute && <Footer />}
+      <Footer />
       <AuthModal />
       {toast && <Toast msg={toast} />}
     </div>

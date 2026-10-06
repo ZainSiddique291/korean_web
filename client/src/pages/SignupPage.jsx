@@ -40,23 +40,23 @@ const SignupPage = () => {
 
   return (
     <div className="min-h-[85vh] flex items-center justify-center bg-surface-50 px-4 py-12">
-      <div className="w-full max-w-md bg-white rounded-3xl shadow-xl p-8 border border-surface-200 animate-fade-in">
-        <div className="flex items-center gap-3 mb-6">
-          <div className="w-10 h-10 rounded-2xl bg-primary-600 flex items-center justify-center text-white">
+      <div className="w-full max-w-md bg-white rounded-3xl shadow-xl p-8 sm:p-9 border border-surface-200 animate-fade-in">
+        <div className="flex items-center gap-3.5 mb-7">
+          <div className="w-11 h-11 rounded-2xl bg-primary-600 flex items-center justify-center text-white shadow-md shadow-primary-500/20">
             <UserPlus className="w-5 h-5" />
           </div>
           <div>
-            <h1 className="text-xl font-bold text-kdark-900 font-serif">Create Account</h1>
-            <p className="text-xs text-gray-500">Join the SEORA Korean Skincare community</p>
+            <h1 className="text-2xl font-bold text-kdark-900 font-serif">Create Account</h1>
+            <p className="text-sm text-gray-500">Join the SEORA Korean Skincare community</p>
           </div>
         </div>
 
         {/* 1-Click Fast Auth */}
-        <div className="space-y-2.5 mb-6">
+        <div className="space-y-3 mb-6">
           <button
             type="button"
             onClick={handleGoogle}
-            className="w-full flex items-center justify-center gap-3 py-2.5 px-4 rounded-xl border border-surface-200 bg-white hover:bg-surface-50 text-kdark-800 text-xs font-semibold transition-all shadow-xs"
+            className="w-full flex items-center justify-center gap-3 py-3 px-4 rounded-xl border border-surface-200 bg-white hover:bg-surface-50 text-kdark-800 text-sm font-semibold transition-all shadow-xs"
           >
             <svg className="w-4 h-4" viewBox="0 0 24 24">
               <path
@@ -82,89 +82,89 @@ const SignupPage = () => {
           <button
             type="button"
             onClick={handleGuest}
-            className="w-full flex items-center justify-center gap-2 py-2 px-4 rounded-xl border border-dashed border-primary-300 bg-primary-50/60 hover:bg-primary-50 text-primary-700 text-xs font-semibold transition-all"
+            className="w-full flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl border border-dashed border-primary-300 bg-primary-50/60 hover:bg-primary-50 text-primary-700 text-sm font-semibold transition-all"
           >
             <Sparkles className="w-4 h-4 text-primary-600" />
             Continue as Guest (Skip Account Creation)
           </button>
         </div>
 
-        <div className="relative flex items-center justify-center my-4">
+        <div className="relative flex items-center justify-center my-5">
           <div className="border-t border-surface-200 w-full" />
-          <span className="bg-white px-3 text-[10px] uppercase tracking-wider text-gray-400 absolute">or sign up with form</span>
+          <span className="bg-white px-3 text-xs uppercase tracking-wider text-gray-400 absolute">or sign up with form</span>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-3 text-xs">
+        <form onSubmit={handleSubmit} className="space-y-3.5 text-sm">
           <div>
-            <label className="block font-semibold text-kdark-700 mb-1">Full Name *</label>
+            <label className="block font-semibold text-kdark-700 mb-1.5">Full Name *</label>
             <input
               type="text"
               required
               value={form.name}
               onChange={set('name')}
               placeholder="e.g. Fatima Zahra"
-              className="input-field"
+              className="input-field text-sm"
             />
           </div>
 
           <div>
-            <label className="block font-semibold text-kdark-700 mb-1">Email Address *</label>
+            <label className="block font-semibold text-kdark-700 mb-1.5">Email Address *</label>
             <input
               type="email"
               required
               value={form.email}
               onChange={set('email')}
               placeholder="name@example.com"
-              className="input-field"
+              className="input-field text-sm"
             />
           </div>
 
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
             <div>
-              <label className="block font-semibold text-kdark-700 mb-1">Password *</label>
+              <label className="block font-semibold text-kdark-700 mb-1.5">Password *</label>
               <input
                 type="password"
                 required
                 value={form.password}
                 onChange={set('password')}
                 placeholder="••••••••"
-                className="input-field"
+                className="input-field text-sm"
               />
             </div>
             <div>
-              <label className="block font-semibold text-kdark-700 mb-1">Phone Number</label>
+              <label className="block font-semibold text-kdark-700 mb-1.5">Phone Number</label>
               <input
                 type="tel"
                 value={form.phone}
                 onChange={set('phone')}
                 placeholder="+92 300 1234567"
-                className="input-field"
+                className="input-field text-sm"
               />
             </div>
           </div>
 
           <div>
-            <label className="block font-semibold text-kdark-700 mb-1">Shipping Address</label>
+            <label className="block font-semibold text-kdark-700 mb-1.5">Shipping Address</label>
             <textarea
               rows={2}
               value={form.address}
               onChange={set('address')}
               placeholder="Street, City, Postal Code"
-              className="input-field resize-none"
+              className="input-field resize-none text-sm"
             />
           </div>
 
           <button
             type="submit"
             disabled={loading}
-            className="w-full btn-primary py-3 text-xs font-semibold flex items-center justify-center gap-2 mt-4 disabled:opacity-60"
+            className="w-full btn-primary py-3.5 text-sm font-semibold flex items-center justify-center gap-2 mt-5 disabled:opacity-60"
           >
             {loading ? 'Creating Account...' : 'Create My Account'}
             {!loading && <ArrowRight className="w-4 h-4" />}
           </button>
         </form>
 
-        <p className="text-xs text-center text-gray-500 mt-6">
+        <p className="text-sm text-center text-gray-500 mt-6">
           Already have an account?{' '}
           <Link to="/login" className="text-primary-700 font-bold hover:underline">
             Sign in

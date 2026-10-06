@@ -232,92 +232,92 @@ const ProductDetailPage = () => {
                 </span>
               </div>
 
-              <h1 className="text-2xl sm:text-3xl font-bold text-kdark-900 font-serif mb-2 leading-snug">
+              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-kdark-900 font-serif mb-2.5 leading-snug">
                 {title}
               </h1>
 
               {subtitle && (
-                <p className="text-sm font-medium text-gray-500 mb-3 italic">
+                <p className="text-sm sm:text-base font-medium text-gray-500 mb-3.5 italic">
                   {subtitle}
                 </p>
               )}
 
               {/* Rating */}
-              <div className="flex items-center gap-2 mb-5">
-                <div className="flex items-center gap-1 bg-brand-50 px-2.5 py-1 rounded-lg">
-                  <Star className="w-3.5 h-3.5 text-brand-500 fill-brand-500" />
-                  <span className="text-xs font-bold text-brand-700">
+              <div className="flex items-center gap-2.5 mb-6">
+                <div className="flex items-center gap-1.5 bg-brand-50 px-3 py-1 rounded-xl">
+                  <Star className="w-4 h-4 text-brand-500 fill-brand-500" />
+                  <span className="text-xs sm:text-sm font-bold text-brand-700">
                     {typeof rating === 'number' ? rating.toFixed(1) : '4.9'}
                   </span>
                 </div>
-                <span className="text-xs text-gray-400">
-                  ({ratingCount} verified customer reviews)
+                <span className="text-xs sm:text-sm text-gray-500">
+                  ({ratingCount} verified reviews)
                 </span>
                 <span className="text-gray-300">•</span>
-                <span className="text-xs text-gray-500">{skinType}</span>
+                <span className="text-xs sm:text-sm text-gray-600 font-medium">{skinType}</span>
               </div>
 
               {/* Price */}
-              <div className="flex items-baseline gap-3 mb-6 p-4 rounded-2xl bg-surface-50 border border-surface-200">
-                <span className="text-3xl font-black text-kdark-900 font-serif">
+              <div className="flex items-baseline gap-3.5 mb-6 p-4 sm:p-5 rounded-2xl bg-surface-50 border border-surface-200">
+                <span className="text-3xl sm:text-4xl font-bold text-kdark-900 font-serif">
                   ${Number(price).toFixed(2)}
                 </span>
                 {originalPrice && originalPrice > price && (
-                  <span className="text-base text-gray-400 line-through">
+                  <span className="text-base sm:text-lg text-gray-400 line-through">
                     ${Number(originalPrice).toFixed(2)}
                   </span>
                 )}
                 {originalPrice && originalPrice > price && (
-                  <span className="text-xs font-bold text-kaccent-600 bg-kaccent-50 px-2.5 py-0.5 rounded-full">
+                  <span className="text-xs sm:text-sm font-bold text-kaccent-600 bg-kaccent-50 px-3 py-1 rounded-full">
                     Save ${(originalPrice - price).toFixed(2)}
                   </span>
                 )}
-                <span className="text-xs text-gray-500 ml-auto">
+                <span className="text-xs sm:text-sm text-gray-500 ml-auto">
                   Net Vol: <strong>{netVol}</strong>
                 </span>
               </div>
 
-              <p className="text-sm text-gray-600 leading-relaxed mb-6">
+              <p className="text-sm sm:text-base text-gray-700 leading-relaxed mb-6">
                 {description}
               </p>
 
               {/* Quantity Selector & Action Buttons */}
-              <div className="space-y-3 mb-8">
-                <div className="flex items-center gap-3">
-                  <span className="text-xs font-semibold text-kdark-800">Quantity:</span>
-                  <div className="inline-flex items-center border border-surface-200 rounded-full bg-white p-1">
+              <div className="space-y-4 mb-8">
+                <div className="flex items-center gap-3.5">
+                  <span className="text-sm font-semibold text-kdark-800">Quantity:</span>
+                  <div className="inline-flex items-center border border-surface-200 rounded-full bg-white p-1 shadow-2xs">
                     <button
                       onClick={() => setQuantity((q) => Math.max(1, q - 1))}
-                      className="w-8 h-8 rounded-full flex items-center justify-center hover:bg-surface-100 text-gray-600 font-bold transition-colors"
+                      className="w-9 h-9 rounded-full flex items-center justify-center hover:bg-surface-100 text-gray-700 font-bold transition-colors text-base"
                     >
                       -
                     </button>
-                    <span className="w-10 text-center font-bold text-sm text-kdark-900">
+                    <span className="w-12 text-center font-bold text-base text-kdark-900">
                       {quantity}
                     </span>
                     <button
                       onClick={() => setQuantity((q) => q + 1)}
-                      className="w-8 h-8 rounded-full flex items-center justify-center hover:bg-surface-100 text-gray-600 font-bold transition-colors"
+                      className="w-9 h-9 rounded-full flex items-center justify-center hover:bg-surface-100 text-gray-700 font-bold transition-colors text-base"
                     >
                       +
                     </button>
                   </div>
                 </div>
 
-                <div className="flex flex-col sm:flex-row gap-3 pt-2">
+                <div className="flex flex-col sm:flex-row gap-3.5 pt-2">
                   <button
                     onClick={handleAddToCart}
-                    className="flex-1 btn-primary py-3 text-sm font-semibold flex items-center justify-center gap-2"
+                    className="flex-1 btn-primary py-3.5 px-6 text-base font-semibold flex items-center justify-center gap-2"
                   >
-                    {added ? <Check className="w-4 h-4" /> : <ShoppingBag className="w-4 h-4" />}
-                    {added ? 'Added to Bag!' : 'Add to Bag'}
+                    {added ? <Check className="w-5 h-5" /> : <ShoppingBag className="w-5 h-5" />}
+                    <span>{added ? 'Added to Bag!' : 'Add to Bag'}</span>
                   </button>
 
                   <button
                     onClick={handleBuyNow}
-                    className="flex-1 btn-brand py-3 text-sm font-semibold flex items-center justify-center gap-2"
+                    className="flex-1 btn-brand py-3.5 px-6 text-base font-semibold flex items-center justify-center gap-2"
                   >
-                    Instant Checkout (COD)
+                    <span>Instant Checkout (COD)</span>
                   </button>
                 </div>
               </div>
@@ -326,19 +326,19 @@ const ProductDetailPage = () => {
             {/* Trust Badges in Product Box */}
             <div className="pt-6 border-t border-surface-200 grid grid-cols-3 gap-3 text-center">
               <div className="flex flex-col items-center">
-                <ShieldCheck className="w-5 h-5 text-primary-600 mb-1" />
-                <span className="text-[11px] font-semibold text-kdark-800">Made in Korea</span>
-                <span className="text-[10px] text-gray-400">Authentic SEORA Lab</span>
+                <ShieldCheck className="w-6 h-6 text-primary-600 mb-1.5" />
+                <span className="text-xs sm:text-sm font-bold text-kdark-800">Made in Korea</span>
+                <span className="text-xs text-gray-500">Authentic SEORA Lab</span>
               </div>
               <div className="flex flex-col items-center">
-                <Truck className="w-5 h-5 text-brand-600 mb-1" />
-                <span className="text-[11px] font-semibold text-kdark-800">Express Delivery</span>
-                <span className="text-[10px] text-gray-400">2-4 Business Days</span>
+                <Truck className="w-6 h-6 text-brand-600 mb-1.5" />
+                <span className="text-xs sm:text-sm font-bold text-kdark-800">Express Delivery</span>
+                <span className="text-xs text-gray-500">2-4 Business Days</span>
               </div>
               <div className="flex flex-col items-center">
-                <RotateCcw className="w-5 h-5 text-emerald-600 mb-1" />
-                <span className="text-[11px] font-semibold text-kdark-800">Cash on Delivery</span>
-                <span className="text-[10px] text-gray-400">All Pakistan Cities</span>
+                <RotateCcw className="w-6 h-6 text-emerald-600 mb-1.5" />
+                <span className="text-xs sm:text-sm font-bold text-kdark-800">Cash on Delivery</span>
+                <span className="text-xs text-gray-500">All Pakistan Cities</span>
               </div>
             </div>
           </div>

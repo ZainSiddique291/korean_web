@@ -124,11 +124,11 @@ const AuthModal = () => {
           </div>
 
           {/* Tab Switcher */}
-          <div className="flex bg-surface-100 p-1 rounded-xl mb-5">
+          <div className="flex bg-surface-100 p-1.5 rounded-xl mb-6">
             <button
               type="button"
               onClick={() => setTab('login')}
-              className={`flex-1 py-1.5 text-xs font-semibold rounded-lg transition-all ${
+              className={`flex-1 py-2 text-sm font-bold rounded-lg transition-all ${
                 tab === 'login'
                   ? 'bg-white text-kdark-900 shadow-sm'
                   : 'text-gray-500 hover:text-kdark-900'
@@ -139,7 +139,7 @@ const AuthModal = () => {
             <button
               type="button"
               onClick={() => setTab('signup')}
-              className={`flex-1 py-1.5 text-xs font-semibold rounded-lg transition-all ${
+              className={`flex-1 py-2 text-sm font-bold rounded-lg transition-all ${
                 tab === 'signup'
                   ? 'bg-white text-kdark-900 shadow-sm'
                   : 'text-gray-500 hover:text-kdark-900'

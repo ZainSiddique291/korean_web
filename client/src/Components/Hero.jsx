@@ -29,44 +29,44 @@ const Hero = () => {
         </div>
 
         {/* Korean Skincare Trust & Value Props Strip (Inspired by reference site) */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 mt-4 sm:mt-6">
-          <div className="flex items-center gap-3 p-3 sm:p-4 rounded-2xl bg-white border border-surface-200/80 shadow-xs">
-            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-primary-50 flex items-center justify-center shrink-0">
-              <ShieldCheck className="w-5 h-5 text-primary-600" />
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mt-4 sm:mt-6">
+          <div className="flex items-center gap-3 p-3.5 sm:p-4 rounded-2xl bg-white border border-surface-200/80 shadow-xs">
+            <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-primary-50 flex items-center justify-center shrink-0">
+              <ShieldCheck className="w-5 h-5 sm:w-6 sm:h-6 text-primary-600" />
             </div>
             <div>
-              <h4 className="text-xs sm:text-sm font-semibold text-kdark-900 leading-snug">100% Original</h4>
-              <p className="text-[11px] text-gray-500 hidden sm:block">Direct from official Seoul labs</p>
+              <h4 className="text-sm sm:text-base font-bold text-kdark-900 leading-snug">100% Original</h4>
+              <p className="text-xs text-gray-500 hidden sm:block">Direct from official Seoul labs</p>
             </div>
           </div>
 
-          <div className="flex items-center gap-3 p-3 sm:p-4 rounded-2xl bg-white border border-surface-200/80 shadow-xs">
-            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-brand-50 flex items-center justify-center shrink-0">
-              <Truck className="w-5 h-5 text-brand-600" />
+          <div className="flex items-center gap-3 p-3.5 sm:p-4 rounded-2xl bg-white border border-surface-200/80 shadow-xs">
+            <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-brand-50 flex items-center justify-center shrink-0">
+              <Truck className="w-5 h-5 sm:w-6 sm:h-6 text-brand-600" />
             </div>
             <div>
-              <h4 className="text-xs sm:text-sm font-semibold text-kdark-900 leading-snug">Express Delivery</h4>
-              <p className="text-[11px] text-gray-500 hidden sm:block">Fast shipping nationwide</p>
+              <h4 className="text-sm sm:text-base font-bold text-kdark-900 leading-snug">Express Delivery</h4>
+              <p className="text-xs text-gray-500 hidden sm:block">Fast shipping nationwide</p>
             </div>
           </div>
 
-          <div className="flex items-center gap-3 p-3 sm:p-4 rounded-2xl bg-white border border-surface-200/80 shadow-xs">
-            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-sage-50 flex items-center justify-center shrink-0">
-              <Banknote className="w-5 h-5 text-sage-600" />
+          <div className="flex items-center gap-3 p-3.5 sm:p-4 rounded-2xl bg-white border border-surface-200/80 shadow-xs">
+            <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-sage-50 flex items-center justify-center shrink-0">
+              <Banknote className="w-5 h-5 sm:w-6 sm:h-6 text-sage-600" />
             </div>
             <div>
-              <h4 className="text-xs sm:text-sm font-semibold text-kdark-900 leading-snug">COD Available</h4>
-              <p className="text-[11px] text-gray-500 hidden sm:block">Pay securely on delivery</p>
+              <h4 className="text-sm sm:text-base font-bold text-kdark-900 leading-snug">COD Available</h4>
+              <p className="text-xs text-gray-500 hidden sm:block">Pay securely on delivery</p>
             </div>
           </div>
 
-          <div className="flex items-center gap-3 p-3 sm:p-4 rounded-2xl bg-white border border-surface-200/80 shadow-xs">
-            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-primary-50 flex items-center justify-center shrink-0">
-              <Award className="w-5 h-5 text-primary-600" />
+          <div className="flex items-center gap-3 p-3.5 sm:p-4 rounded-2xl bg-white border border-surface-200/80 shadow-xs">
+            <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-primary-50 flex items-center justify-center shrink-0">
+              <Award className="w-5 h-5 sm:w-6 sm:h-6 text-primary-600" />
             </div>
             <div>
-              <h4 className="text-xs sm:text-sm font-semibold text-kdark-900 leading-snug">Korean Science</h4>
-              <p className="text-[11px] text-gray-500 hidden sm:block">Gentle & clinically proven</p>
+              <h4 className="text-sm sm:text-base font-bold text-kdark-900 leading-snug">Korean Science</h4>
+              <p className="text-xs text-gray-500 hidden sm:block">Gentle & clinically proven</p>
             </div>
           </div>
         </div>

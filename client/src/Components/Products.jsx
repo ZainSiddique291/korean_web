@@ -63,19 +63,19 @@ const Products = () => {
   return (
     <div>
       {/* Top control bar: item count and sorting */}
-      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mb-6 pb-3 border-b border-surface-200 text-xs text-gray-500">
-        <div className="font-medium text-kdark-700">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mb-6 pb-3 border-b border-surface-200 text-sm text-gray-600">
+        <div className="font-medium text-kdark-800">
           Showing <span className="font-bold text-kdark-900">{filtered.length}</span> SEORA formula
           {filtered.length === 1 ? '' : 's'}
         </div>
 
         <div className="flex items-center gap-2 self-end sm:self-auto">
-          <ArrowUpDown className="w-3.5 h-3.5 text-gray-400" />
+          <ArrowUpDown className="w-4 h-4 text-gray-400" />
           <span className="font-medium">Sort by:</span>
           <select
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value)}
-            className="bg-white border border-surface-200 rounded-lg px-2.5 py-1 text-xs font-medium text-kdark-800 outline-none focus:border-primary-500"
+            className="bg-white border border-surface-200 rounded-xl px-3 py-1.5 text-sm font-medium text-kdark-800 outline-none focus:border-primary-500 shadow-2xs"
           >
             <option value="featured">Featured Collection</option>
             <option value="rating">Top Rated (★)</option>
@@ -86,7 +86,7 @@ const Products = () => {
       </div>
 
       {/* Product Grid */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
+      <div className="grid grid-cols-1 min-[440px]:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
         {filtered.map((p) => (
           <ProductCard key={p.id || p._id} product={p} />
         ))}
