@@ -29,59 +29,45 @@ A modern, responsive e-commerce web application built with **React 19**, **Vite*
 | **Linting** | ESLint 9 |
 | **PostCSS** | Autoprefixer |
 
-## 🚀 Quick Start
+## 🚀 Monorepo Architecture & Quick Start
 
-### Prerequisites
-- Node.js 18+ (Recommended: 20+)
-
-### Installation
-```bash
-# Clone the repo (or navigate to project directory)
-cd ecommerce
-
-# Install dependencies
-npm install
-
-# Start development server
-npm run dev
-```
-
-### Available Scripts
-```bash
-npm run dev     # Start dev server (localhost:5173)
-npm run build   # Build for production
-npm run preview # Preview production build
-npm run lint    # Run ESLint
-```
-
-## 📁 Project Structure
+This project is organized as an **npm workspaces Monorepo** where the frontend and backend can run simultaneously in development and on a **single unified server** in production:
 
 ```
-ecommerce/
-├── public/
-│   └── vite.svg
-├── src/
-│   ├── Components/      # Reusable UI components
-│   │   ├── Header.jsx
-│   │   ├── Footer.jsx
-│   │   ├── ProductCard.jsx
-│   │   ├── Products.jsx
-│   │   └── Filters.jsx
-│   ├── context/         # App-wide state management
-│   │   └── AppContext.jsx
-│   ├── pages/           # Page components
-│   │   ├── HomePage.jsx
-│   │   ├── CartPage.jsx
-│   │   ├── LoginPage.jsx
-│   │   └── ProductDetailPage.jsx
-│   ├── App.jsx          # Main app with routing
-│   ├── main.jsx         # Entry point
-│   └── index.css        # Global styles
-├── tailwind.config.js   # Tailwind configuration
-├── vite.config.js       # Vite configuration
-├── package.json
-└── README.md
+KoreanWeb/ (Monorepo Root)
+├── package.json              # Workspaces orchestrator + concurrently scripts
+├── README.md
+├── client/                   # Frontend Workspace (React 19 + Vite)
+│   ├── package.json
+│   ├── vite.config.js
+│   ├── tailwind.config.js
+│   ├── index.html
+│   ├── public/
+│   └── src/
+└── server/                   # Backend Workspace (Node.js + Express + MongoDB)
+    ├── .env
+    ├── .env.example
+    ├── nodemon.json
+    ├── package.json
+    ├── server.js             # API routes + static client/dist host
+    ├── seed.js
+    ├── config/
+    ├── controllers/
+    ├── middleware/
+    ├── models/
+    └── routes/
 ```
+
+### 🛠️ Root Scripts (Run from project root):
+
+| Command | Action |
+| :--- | :--- |
+| `npm run dev` | Runs **both** Express backend (port 5000) and Vite frontend (port 5173) concurrently |
+| `npm run dev:server` | Runs backend only with hot reload (nodemon) |
+| `npm run dev:client` | Runs frontend only with Vite dev server |
+| `npm run build` | Builds production frontend bundle into `client/dist` |
+| `npm start` | **Single-Server Mode**: Boots Express to serve **both** the `/api` and the React frontend on `http://localhost:5000` |
+| `npm run seed` | Seeds MongoDB with authentic Korean skincare products, admin, and sample orders |
 
 ## 🌐 Routes
 
