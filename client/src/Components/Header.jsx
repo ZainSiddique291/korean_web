@@ -59,17 +59,17 @@ const Header = () => {
       </div>
 
       {/* Main Navbar */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3.5 flex items-center justify-between gap-3 md:gap-6">
+      <div className="max-w-7xl mx-auto px-3 sm:px-6 py-2.5 sm:py-3.5 flex items-center justify-between gap-2 sm:gap-4 md:gap-6">
         {/* Brand Logo */}
-        <Link to="/" className="flex items-center gap-2.5 shrink-0 group">
-          <div className="w-10 h-10 rounded-xl bg-primary-600 flex items-center justify-center text-white font-bold text-lg shadow-sm group-hover:bg-primary-700 transition-colors">
+        <Link to="/" className="flex items-center gap-2 sm:gap-2.5 shrink-0 group">
+          <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-primary-600 flex items-center justify-center text-white font-bold text-base sm:text-lg shadow-sm group-hover:bg-primary-700 transition-colors">
             S
           </div>
           <div className="flex flex-col">
-            <span className="text-2xl font-bold tracking-widest text-primary-800 font-serif leading-none">
+            <span className="text-xl sm:text-2xl font-bold tracking-widest text-primary-800 font-serif leading-none">
               SEORA
             </span>
-            <span className="text-[10px] uppercase tracking-[0.25em] text-brand-600 font-semibold mt-0.5">
+            <span className="text-[9px] sm:text-[10px] uppercase tracking-[0.2em] sm:tracking-[0.25em] text-brand-600 font-semibold mt-0.5 hidden xs:block">
               {language === 'ko' ? 'K-뷰티 스킨 솔루션' : 'K-Beauty Solution'}
             </span>
           </div>
@@ -111,31 +111,31 @@ const Header = () => {
           </Link>
         </nav>
 
-        {/* Right Action Icons & Language Translator */}
-        <div className="flex items-center gap-1.5 sm:gap-2.5">
-          {/* Language Switcher Pill Button (Visible, Clean, Decent) */}
-          <div className="flex items-center bg-surface-100 border border-surface-200 rounded-full p-0.5 text-xs font-semibold shadow-2xs">
+        {/* Right Action Icons & Compact Language Translator */}
+        <div className="flex items-center gap-1 sm:gap-2 md:gap-2.5 shrink-0">
+          {/* Language Switcher: Sleek, Compact, strictly Non-wrapping Pill */}
+          <div className="inline-flex items-center bg-surface-100/95 border border-surface-200/90 rounded-full p-0.5 text-[11px] sm:text-xs font-semibold shadow-2xs shrink-0 whitespace-nowrap select-none h-7 sm:h-8">
             <button
               type="button"
               onClick={() => setLanguage('en')}
-              className={`px-2 sm:px-2.5 py-1 rounded-full transition-all flex items-center gap-1 ${
+              className={`px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full transition-all duration-150 shrink-0 whitespace-nowrap leading-none flex items-center gap-1 ${
                 language === 'en'
-                  ? 'bg-primary-600 text-white shadow-xs'
-                  : 'text-gray-500 hover:text-kdark-900'
+                  ? 'bg-primary-600 text-white shadow-xs font-bold'
+                  : 'text-gray-600 hover:text-kdark-900'
               }`}
               title="Switch to English"
               aria-label="Switch to English"
             >
-              <Globe className="w-3.5 h-3.5 hidden sm:inline" />
+              <Globe className="w-3 h-3 hidden sm:inline" />
               <span>EN</span>
             </button>
             <button
               type="button"
               onClick={() => setLanguage('ko')}
-              className={`px-2 sm:px-2.5 py-1 rounded-full transition-all flex items-center gap-1 ${
+              className={`px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full transition-all duration-150 shrink-0 whitespace-nowrap leading-none flex items-center gap-1 ${
                 language === 'ko'
-                  ? 'bg-primary-600 text-white shadow-xs'
-                  : 'text-gray-500 hover:text-kdark-900'
+                  ? 'bg-primary-600 text-white shadow-xs font-bold'
+                  : 'text-gray-600 hover:text-kdark-900'
               }`}
               title="한국어로 번역 (Translate to Korean)"
               aria-label="Translate to Korean"
@@ -145,13 +145,14 @@ const Header = () => {
           </div>
 
           {/* Account Button / Dropdown */}
-          <div className="relative">
+          <div className="relative shrink-0">
             <button
               onClick={handleAccountClick}
-              className="flex items-center gap-1.5 px-2.5 sm:px-3 py-2 rounded-full hover:bg-surface-100 border border-transparent hover:border-surface-200 transition-all text-kdark-800"
+              className="flex items-center gap-1.5 p-1.5 sm:px-3 sm:py-2 rounded-full hover:bg-surface-100 border border-transparent hover:border-surface-200 transition-all text-kdark-800"
+              aria-label="Account Menu"
             >
               <User className="w-4 h-4 text-primary-700" />
-              <span className="text-xs font-medium hidden sm:inline-block max-w-[100px] truncate">
+              <span className="text-xs font-medium hidden sm:inline-block max-w-[90px] truncate">
                 {user ? user.name?.split(' ')[0] : t('signIn', 'Sign In')}
               </span>
               {user && <ChevronDown className="w-3 h-3 text-gray-400 hidden sm:block" />}
@@ -198,12 +199,12 @@ const Header = () => {
           {/* Cart Icon */}
           <Link
             to="/cart"
-            className="relative p-2.5 rounded-full hover:bg-surface-100 text-kdark-800 transition-colors"
+            className="relative p-1.5 sm:p-2.5 rounded-full hover:bg-surface-100 text-kdark-800 transition-colors shrink-0"
             aria-label="View Shopping Cart"
           >
-            <ShoppingCart className="w-5.5 h-5.5 text-primary-800" />
+            <ShoppingCart className="w-5 h-5 sm:w-5.5 sm:h-5.5 text-primary-800" />
             {itemCount > 0 && (
-              <span className="absolute -top-0.5 -right-0.5 bg-primary-600 text-white text-[11px] rounded-full w-5 h-5 flex items-center justify-center font-bold shadow-xs">
+              <span className="absolute -top-0.5 -right-0.5 bg-primary-600 text-white text-[10px] sm:text-[11px] rounded-full w-4.5 h-4.5 sm:w-5 sm:h-5 flex items-center justify-center font-bold shadow-xs">
                 {itemCount}
               </span>
             )}
@@ -212,10 +213,10 @@ const Header = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setMenuOpen(!menuOpen)}
-            className="lg:hidden p-2 rounded-full hover:bg-surface-100 text-kdark-800 transition-colors"
+            className="lg:hidden p-1.5 sm:p-2 rounded-full hover:bg-surface-100 text-kdark-800 transition-colors shrink-0"
             aria-label="Toggle Navigation Menu"
           >
-            {menuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            {menuOpen ? <X className="w-5 h-5 sm:w-6 sm:h-6" /> : <Menu className="w-5 h-5 sm:w-6 sm:h-6" />}
           </button>
         </div>
       </div>

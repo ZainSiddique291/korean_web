@@ -1,4 +1,4 @@
-import { Droplets, Sparkles, Hand, Clock, ShieldCheck, CheckCircle2, Lightbulb } from 'lucide-react';
+import { Droplets, Pipette, Sparkles, ShieldCheck, CheckCircle2, Lightbulb, Clock, ArrowRight } from 'lucide-react';
 import { useApp } from '../context/AppContext';
 
 const HowToUseSection = () => {
@@ -7,58 +7,51 @@ const HowToUseSection = () => {
   const steps = [
     {
       step: '01',
-      title: t('step1Title', 'Cleanse Thoroughly'),
+      title: t('step1Title', 'Cleanse & Prep'),
       subtitle: t('step1Sub', 'Prepare the canvas'),
       description: t(
         'step1Desc',
-        'Start with a gentle, low-pH cleanser. Pat face lightly with a clean towel, leaving skin slightly damp for optimal absorption.'
+        'Start with a gentle, low-pH cleanser. Pat lightly with a clean towel, leaving skin slightly damp so active serums penetrate deeply.'
       ),
       icon: Droplets,
       badge: t('step1Badge', 'Clean Canvas'),
+      timing: t('step1Time', 'Step 01 • Morning & Night'),
     },
     {
       step: '02',
-      title: t('step2Title', 'Dispense 2–3 Drops'),
-      subtitle: t('step2Sub', 'Targeted dose'),
+      title: t('step2Title', 'Dispense & Dose'),
+      subtitle: t('step2Sub', 'Targeted active measure'),
       description: t(
         'step2Desc',
-        'Using the calibrated glass dropper, release 2 to 3 drops of your chosen SEORA active serum directly onto cheeks and forehead.'
+        'Using the calibrated glass dropper, release 2 to 3 concentrated drops of your chosen SEORA serum directly onto cheeks and forehead.'
       ),
-      icon: Sparkles,
+      icon: Pipette,
       badge: t('step2Badge', 'Precision Dose'),
+      timing: t('step2Time', 'Step 02 • 2–3 Drops'),
     },
     {
       step: '03',
-      title: t('step3Title', 'Gently Press & Massage'),
-      subtitle: t('step3Sub', 'Micro-circulation'),
+      title: t('step3Title', 'Press, Tap & Absorb'),
+      subtitle: t('step3Sub', 'Micro-circulation & penetration'),
       description: t(
         'step3Desc',
-        'Smooth gently across face and neck using upward, circular motions. Lightly tap with fingertips to stimulate lymphatic circulation.'
+        'Smooth outwards in gentle circular motions. Tap softly with warm fingertips and allow 30–60 seconds for active botanicals to fully absorb.'
       ),
-      icon: Hand,
-      badge: t('step3Badge', 'Gentle Press'),
+      icon: Sparkles,
+      badge: t('step3Badge', 'Dermal Absorption'),
+      timing: t('step3Time', 'Step 03 • 60s Absorption'),
     },
     {
       step: '04',
-      title: t('step4Title', 'Allow to Absorb'),
-      subtitle: t('step4Sub', '60-second rule'),
+      title: t('step4Title', 'Lock In & Shield'),
+      subtitle: t('step4Sub', 'Seal & protect barrier'),
       description: t(
         'step4Desc',
-        'Wait 30–60 seconds for the Korean bioactive peptides and botanical actives to fully penetrate cellular lipid layers.'
-      ),
-      icon: Clock,
-      badge: t('step4Badge', 'Dermal Penetration'),
-    },
-    {
-      step: '05',
-      title: t('step5Title', 'Lock In with SPF'),
-      subtitle: t('step5Sub', 'Seal & protect'),
-      description: t(
-        'step5Desc',
-        'Follow with your daily moisturizer to seal in hydration. In the morning, always complete your ritual with broad-spectrum SPF 50+.'
+        'Seal in hydration with your daily barrier cream. In the morning, always complete your ritual with broad-spectrum SPF 50+ to protect actives.'
       ),
       icon: ShieldCheck,
-      badge: t('step5Badge', 'Barrier Seal'),
+      badge: t('step4Badge', 'Barrier Seal'),
+      timing: t('step4Time', 'Step 04 • All-Day Shield'),
     },
   ];
 
@@ -69,7 +62,7 @@ const HowToUseSection = () => {
         <div className="text-center max-w-2xl mx-auto mb-12 sm:mb-16">
           <span className="inline-flex items-center gap-2 px-5 py-1.5 rounded-full bg-primary-100 text-primary-800 text-xs sm:text-sm font-semibold tracking-wide uppercase mb-3.5 shadow-2xs">
             <Sparkles className="w-4 h-4 text-brand-600" />
-            {t('howBadge', 'Simple 5-Step Routine')}
+            {t('howBadge', 'The 4-Step Glass-Skin Ritual')}
           </span>
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-kdark-900 font-serif mb-3.5 tracking-tight">
             {t('howTitle', 'How to Use Your SEORA Serums')}
@@ -77,62 +70,79 @@ const HowToUseSection = () => {
           <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
             {t(
               'howSubtitle',
-              'Korean skincare philosophy relies on gentle layering and deliberate micro-absorption. Follow this effortless ritual morning and night for peak glass-skin radiance.'
+              'Korean skincare philosophy relies on gentle layering and deliberate micro-absorption. Follow this effortless 4-step ritual morning and night for peak glass-skin radiance.'
             )}
           </p>
         </div>
 
-        {/* 5-Step Cards Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5 sm:gap-6">
-          {steps.map((s) => {
-            const Icon = s.icon;
-            return (
-              <div
-                key={s.step}
-                className="relative bg-surface-50 rounded-3xl p-6 sm:p-7 border border-surface-200/90 shadow-xs flex flex-col justify-between hover:border-primary-400 hover:shadow-md transition-all duration-200 group"
-              >
-                <div>
-                  <div className="flex items-center justify-between mb-4">
-                    <span className="w-9 h-9 rounded-xl bg-primary-600 text-white font-mono font-bold text-sm flex items-center justify-center shadow-xs">
-                      {s.step}
-                    </span>
-                    <span className="text-[11px] font-semibold text-primary-800 bg-primary-50 px-2.5 py-1 rounded-full border border-primary-100">
-                      {s.badge}
-                    </span>
+        {/* 4-Step Cards Grid with Subtle Connecting Progression */}
+        <div className="relative">
+          {/* Subtle Desktop Connector Line */}
+          <div className="hidden lg:block absolute top-[52px] left-[10%] right-[10%] h-[2px] bg-gradient-to-r from-primary-200 via-brand-200 to-primary-200 -z-0" />
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 relative z-10">
+            {steps.map((s, index) => {
+              const Icon = s.icon;
+              return (
+                <div
+                  key={s.step}
+                  className="bg-surface-50 hover:bg-white rounded-3xl p-6 sm:p-7 border border-surface-200/90 hover:border-primary-400 hover:shadow-lg transition-all duration-300 flex flex-col justify-between group relative"
+                >
+                  <div>
+                    {/* Top Step Number & Badge */}
+                    <div className="flex items-center justify-between mb-5">
+                      <div className="w-10 h-10 rounded-2xl bg-white group-hover:bg-primary-600 text-primary-800 group-hover:text-white font-serif font-bold text-sm flex items-center justify-center border border-surface-200 group-hover:border-primary-600 shadow-xs transition-colors duration-300">
+                        {s.step}
+                      </div>
+                      <span className="text-[11px] font-semibold text-primary-800 bg-primary-100/70 group-hover:bg-primary-100 px-3 py-1 rounded-full border border-primary-200/60 shadow-2xs">
+                        {s.badge}
+                      </span>
+                    </div>
+
+                    {/* Attractive Icon Box */}
+                    <div className="w-14 h-14 rounded-2xl bg-white border border-surface-200/80 text-primary-700 flex items-center justify-center mb-5 group-hover:scale-105 group-hover:border-primary-300 group-hover:shadow-sm transition-all duration-300">
+                      <Icon className="w-7 h-7 text-primary-600" />
+                    </div>
+
+                    {/* Title & Subtitle */}
+                    <h3 className="text-lg sm:text-xl font-bold text-kdark-900 mb-1 font-serif group-hover:text-primary-700 transition-colors">
+                      {s.title}
+                    </h3>
+                    <p className="text-xs font-semibold text-brand-600 uppercase tracking-wider mb-3">
+                      {s.subtitle}
+                    </p>
+
+                    {/* Description */}
+                    <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
+                      {s.description}
+                    </p>
                   </div>
 
-                  <div className="w-12 h-12 rounded-2xl bg-white border border-surface-200 text-primary-700 flex items-center justify-center mb-4 group-hover:scale-105 transition-transform shadow-2xs">
-                    <Icon className="w-6 h-6 text-primary-600" />
+                  {/* Timing & Approval Footer */}
+                  <div className="mt-6 pt-4 border-t border-surface-200/80 flex items-center justify-between text-[11px] text-gray-500 font-medium">
+                    <span className="flex items-center gap-1.5 text-primary-700 font-semibold">
+                      <Clock className="w-3.5 h-3.5 text-brand-600" />
+                      <span>{s.timing}</span>
+                    </span>
+                    <span className="flex items-center gap-1 text-emerald-600">
+                      <CheckCircle2 className="w-3.5 h-3.5" />
+                      <span className="hidden sm:inline">Approved</span>
+                    </span>
                   </div>
-
-                  <h3 className="text-base sm:text-lg font-bold text-kdark-900 mb-1 leading-snug">
-                    {s.title}
-                  </h3>
-                  <p className="text-xs font-medium text-brand-600 mb-2">
-                    {s.subtitle}
-                  </p>
-                  <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
-                    {s.description}
-                  </p>
                 </div>
-
-                <div className="mt-5 pt-3 border-t border-surface-200/70 flex items-center gap-1.5 text-[11px] text-gray-400 font-medium">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500" />
-                  <span>K-Derm Approved</span>
-                </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
 
         {/* Dermatologist Layering Pro-Tip */}
-        <div className="mt-10 sm:mt-14 p-5 sm:p-7 rounded-3xl bg-primary-50/70 border border-primary-200/80 flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6 shadow-2xs">
+        <div className="mt-12 sm:mt-16 p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-primary-50/90 via-surface-50 to-primary-50/70 border border-primary-200/80 flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6 shadow-xs">
           <div className="w-12 h-12 rounded-2xl bg-primary-600 text-white flex items-center justify-center shrink-0 shadow-sm">
-            <Lightbulb className="w-6 h-6" />
+            <Lightbulb className="w-6 h-6 text-white" />
           </div>
           <div className="flex-1">
-            <h4 className="text-base font-bold text-primary-900 mb-1">
-              {t('layeringTipTitle', 'Seoul Dermatology Layering Rule:')}
+            <h4 className="text-base sm:text-lg font-bold text-primary-900 font-serif mb-1.5 flex items-center gap-2">
+              <span>{t('layeringTipTitle', 'Seoul Dermatology Layering Rule:')}</span>
             </h4>
             <p className="text-xs sm:text-sm text-primary-800/90 leading-relaxed">
               {t(
