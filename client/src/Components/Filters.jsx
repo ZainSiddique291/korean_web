@@ -13,7 +13,7 @@ const Filters = () => {
   const { filter, setFilter } = useApp();
 
   return (
-    <div className="flex items-center justify-start md:justify-center gap-2 overflow-x-auto pb-3 pt-1 scrollbar-none">
+    <div className="flex items-center justify-start md:justify-center gap-3 sm:gap-3.5 overflow-x-auto pb-4 pt-1 px-1 scrollbar-none">
       {CATS.map((c) => {
         const isActive = filter === c.value;
         const IconComponent = c.icon;
@@ -21,18 +21,18 @@ const Filters = () => {
           <button
             key={c.id}
             onClick={() => setFilter(c.value)}
-            className={`whitespace-nowrap px-4.5 py-2.5 rounded-full text-sm sm:text-base font-semibold transition-all duration-200 shrink-0 flex items-center gap-2 ${
+            className={`whitespace-nowrap px-6 sm:px-7 py-2.5 sm:py-3 rounded-full text-sm sm:text-base font-medium transition-all duration-200 shrink-0 flex items-center justify-center gap-2.5 leading-none ${
               isActive
-                ? 'bg-primary-600 text-white shadow-sm ring-2 ring-primary-600/20'
-                : 'bg-white text-kdark-700 border border-surface-200 hover:border-primary-300 hover:text-primary-700'
+                ? 'bg-primary-600 text-white shadow-md shadow-primary-600/20 ring-2 ring-primary-600/30 font-semibold'
+                : 'bg-white text-kdark-700 border border-surface-200 hover:border-primary-300 hover:text-primary-700 hover:bg-surface-50 shadow-2xs'
             }`}
           >
             {IconComponent && (
               <IconComponent
-                className={`w-4 h-4 ${isActive ? 'text-white' : c.color || 'text-brand-500'}`}
+                className={`w-4 h-4 shrink-0 ${isActive ? 'text-white' : c.color || 'text-brand-500'}`}
               />
             )}
-            {c.label}
+            <span className="translate-y-px">{c.label}</span>
           </button>
         );
       })}

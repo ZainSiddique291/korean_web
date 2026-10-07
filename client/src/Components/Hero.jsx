@@ -9,11 +9,13 @@ const Hero = () => {
         <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-sm border border-[#ede3d8] bg-[#FAF3EB]">
           {/* Hero Banner Image */}
           <picture className="w-full block">
+            <source srcSet="/hero-banner-sharp.jpg" type="image/jpeg" />
             <img
-              src="/hero-banner.png"
+              src="/hero-banner-sharp.jpg"
               alt="SEORA K-Beauty Skin Solution - Clear, Glowing Skin Starts Here"
-              className="w-full h-auto object-contain max-h-[580px] mx-auto select-none"
+              className="w-full h-auto object-contain max-h-[620px] mx-auto select-none rounded-2xl sm:rounded-3xl"
               loading="eager"
+              decoding="async"
             />
           </picture>
 

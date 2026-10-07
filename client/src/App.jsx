@@ -12,6 +12,7 @@ import CartPage from './pages/CartPage';
 import ShippingPage from './pages/ShippingPage';
 import ProductDetailPage from './pages/ProductDetailPage';
 import CustomerPanelPage from './pages/CustomerPanelPage';
+import ContactPage from './pages/ContactPage';
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -36,6 +37,7 @@ const App = () => {
       <main className="flex-1">
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="/contact" element={<ContactPage />} />
           <Route path="/product/:id" element={<ProductDetailPage />} />
           <Route path="/cart" element={<CartPage />} />
           <Route path="/shipping" element={<ShippingPage />} />

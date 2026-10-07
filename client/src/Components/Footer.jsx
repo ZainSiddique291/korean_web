@@ -73,6 +73,15 @@ const Footer = () => (
             <HashLink smooth to="/#products" className="hover:text-brand-300 transition-colors">
               Korean Skincare Catalog
             </HashLink>
+            <HashLink smooth to="/#how-to-use" className="hover:text-brand-300 transition-colors">
+              How to Use Serums
+            </HashLink>
+            <HashLink smooth to="/#why-choose-us" className="hover:text-brand-300 transition-colors">
+              Why Choose SEORA
+            </HashLink>
+            <Link to="/contact" className="hover:text-brand-300 transition-colors">
+              Contact & Support Form
+            </Link>
             <Link to="/cart" className="hover:text-brand-300 transition-colors">
               Shopping Bag
             </Link>
@@ -87,7 +96,7 @@ const Footer = () => (
           <h3 className="text-white font-serif font-bold text-base mb-4 tracking-wide uppercase">
             Customer Care
           </h3>
-          <div className="flex flex-col gap-3 text-sm text-gray-300">
+          <div className="flex flex-col gap-3 text-sm text-gray-300 mb-4">
             <span className="flex items-center gap-2.5">
               <Mail className="w-4.5 h-4.5 text-brand-400 shrink-0" />
               <span>care@seora-skincare.pk</span>
@@ -101,6 +110,15 @@ const Footer = () => (
               <span>Gulberg III, Lahore / Seoul Logistics Hub</span>
             </span>
           </div>
+
+          {/* Prominent Contact Us Button */}
+          <Link
+            to="/contact"
+            className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full bg-primary-600 hover:bg-primary-500 text-white font-semibold text-xs sm:text-sm transition-all shadow-sm active:scale-95 border border-primary-500/40"
+          >
+            <Mail className="w-4 h-4" />
+            <span>Open Contact Us Form →</span>
+          </Link>
         </div>
 
         {/* Newsletter & Payment Methods */}

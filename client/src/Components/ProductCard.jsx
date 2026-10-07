@@ -58,16 +58,16 @@ const ProductCard = ({ product }) => {
           {/* Badges */}
           <div className="absolute top-3 left-3 flex flex-col gap-1.5 z-10">
             {tag && (
-              <span className={`${tagStyle} text-xs font-bold px-3 py-1 rounded-full shadow-xs tracking-wide`}>
+              <span className={`${tagStyle} text-xs font-bold px-3.5 py-1 rounded-full shadow-xs tracking-wide`}>
                 {tag}
               </span>
             )}
-            <span className="bg-white/95 backdrop-blur-xs text-kdark-800 border border-surface-200 text-xs font-semibold px-2.5 py-0.5 rounded-full w-max">
+            <span className="bg-white/95 backdrop-blur-xs text-kdark-800 border border-surface-200 text-xs font-semibold px-3 py-0.5 rounded-full w-max shadow-2xs">
               SEORA • Korea
             </span>
           </div>
 
-          <span className="absolute bottom-2.5 right-2.5 bg-black/50 backdrop-blur-xs text-white text-xs font-medium px-2.5 py-1 rounded-md">
+          <span className="absolute bottom-2.5 right-2.5 bg-black/60 backdrop-blur-xs text-white text-xs font-medium px-3 py-1 rounded-md">
             {netVol}
           </span>
         </div>
@@ -95,11 +95,11 @@ const ProductCard = ({ product }) => {
           )}
 
           {keyIngredients && keyIngredients.length > 0 && (
-            <div className="flex flex-wrap gap-1.5 mt-3">
+            <div className="flex flex-wrap gap-2 mt-3">
               {keyIngredients.slice(0, 2).map((ing, i) => (
                 <span
                   key={i}
-                  className="text-xs font-medium px-2.5 py-0.5 bg-surface-100 text-gray-700 rounded-full"
+                  className="text-xs font-medium px-3 py-1 bg-surface-100 text-gray-700 rounded-full border border-surface-200/60"
                 >
                   {ing}
                 </span>

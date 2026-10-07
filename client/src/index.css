@@ -6,9 +6,12 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
   }
   body {
     @apply font-sans bg-surface-50 text-kdark-900 text-base leading-relaxed antialiased selection:bg-primary-100 selection:text-primary-800;
+    overflow-x: hidden;
+    width: 100%;
   }
   h1, h2, h3, h4, h5, h6 {
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";

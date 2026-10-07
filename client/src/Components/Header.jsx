@@ -76,17 +76,17 @@ const Header = () => {
         </Link>
 
         {/* Search Bar - Desktop */}
-        <div className="flex-1 max-w-md hidden md:flex items-center bg-surface-100 border border-surface-200 rounded-full px-4.5 py-2.5 gap-2.5 focus-within:border-primary-500 focus-within:bg-white transition-all shadow-2xs">
-          <Search className="w-4.5 h-4.5 text-gray-400 shrink-0" />
+        <div className="flex-1 max-w-md hidden md:flex items-center bg-surface-100/90 border border-surface-200/90 rounded-full px-6 py-2.5 gap-3.5 focus-within:border-primary-500 focus-within:bg-white focus-within:shadow-sm transition-all shadow-xs">
+          <Search className="w-4 h-4 text-gray-400 shrink-0 ml-0.5" />
           <input
             type="text"
             value={searchTerm}
             onChange={handleSearch}
             placeholder="Search Korean skincare, serums, toners..."
-            className="bg-transparent flex-1 text-sm outline-none text-kdark-900 placeholder:text-gray-400"
+            className="bg-transparent flex-1 text-sm outline-none text-kdark-900 placeholder:text-gray-400 pr-1"
           />
           {searchTerm && (
-            <button onClick={clearSearch} className="text-gray-400 hover:text-gray-600 p-1">
+            <button onClick={clearSearch} className="text-gray-400 hover:text-gray-600 p-1 mr-0.5">
               <X className="w-4 h-4" />
             </button>
           )}
@@ -100,9 +100,15 @@ const Header = () => {
           <HashLink smooth to="/#products" className="text-[15px] font-medium text-kdark-800 hover:text-primary-600 transition-colors">
             Shop All
           </HashLink>
-          <HashLink smooth to="/#contact" className="text-[15px] font-medium text-kdark-800 hover:text-primary-600 transition-colors">
-            Contact & Support
+          <HashLink smooth to="/#how-to-use" className="text-[15px] font-medium text-kdark-800 hover:text-primary-600 transition-colors">
+            How to Use
           </HashLink>
+          <HashLink smooth to="/#why-choose-us" className="text-[15px] font-medium text-kdark-800 hover:text-primary-600 transition-colors">
+            Why Us
+          </HashLink>
+          <Link to="/contact" className="text-[15px] font-medium text-kdark-800 hover:text-primary-600 transition-colors">
+            Contact
+          </Link>
         </nav>
 
         {/* Right Action Icons */}
@@ -185,21 +191,26 @@ const Header = () => {
 
       {/* Mobile Drawer Menu */}
       {menuOpen && (
-        <div className="lg:hidden bg-white border-t border-surface-200 px-4 sm:px-6 py-4 flex flex-col gap-2.5 animate-fade-in shadow-lg">
-          <div className="flex items-center bg-surface-100 border border-surface-200 rounded-full px-4 py-2.5 gap-2.5 mb-2">
-            <Search className="w-4.5 h-4.5 text-gray-400" />
+        <div className="lg:hidden bg-white border-t border-surface-200 px-4 sm:px-6 py-5 flex flex-col gap-2 animate-fade-in shadow-lg">
+          <div className="flex items-center bg-surface-100 border border-surface-200 rounded-full px-5 py-2.5 gap-3 mb-2">
+            <Search className="w-4 h-4 text-gray-400 shrink-0 ml-0.5" />
             <input
               type="text"
               value={searchTerm}
               onChange={handleSearch}
-              placeholder="Search products..."
-              className="bg-transparent flex-1 text-sm outline-none text-kdark-900 placeholder:text-gray-400"
+              placeholder="Search Korean skincare..."
+              className="bg-transparent flex-1 text-sm outline-none text-kdark-900 placeholder:text-gray-400 pr-1"
             />
+            {searchTerm && (
+              <button onClick={clearSearch} className="text-gray-400 hover:text-gray-600 p-0.5">
+                <X className="w-4 h-4" />
+              </button>
+            )}
           </div>
           <Link
             to="/"
             onClick={() => setMenuOpen(false)}
-            className="px-3.5 py-2.5 rounded-xl text-base font-medium text-kdark-800 hover:bg-surface-100 hover:text-primary-700 transition-colors"
+            className="px-4 py-2.5 rounded-xl text-base font-medium text-kdark-800 hover:bg-surface-100 hover:text-primary-700 transition-colors"
           >
             Home
           </Link>
@@ -207,26 +218,41 @@ const Header = () => {
             smooth
             to="/#products"
             onClick={() => setMenuOpen(false)}
-            className="px-3.5 py-2.5 rounded-xl text-base font-medium text-kdark-800 hover:bg-surface-100 hover:text-primary-700 transition-colors"
+            className="px-4 py-2.5 rounded-xl text-base font-medium text-kdark-800 hover:bg-surface-100 hover:text-primary-700 transition-colors"
           >
             Shop Products
           </HashLink>
+          <HashLink
+            smooth
+            to="/#how-to-use"
+            onClick={() => setMenuOpen(false)}
+            className="px-4 py-2.5 rounded-xl text-base font-medium text-kdark-800 hover:bg-surface-100 hover:text-primary-700 transition-colors"
+          >
+            How to Use
+          </HashLink>
+          <HashLink
+            smooth
+            to="/#why-choose-us"
+            onClick={() => setMenuOpen(false)}
+            className="px-4 py-2.5 rounded-xl text-base font-medium text-kdark-800 hover:bg-surface-100 hover:text-primary-700 transition-colors"
+          >
+            Why Choose Us
+          </HashLink>
+          <Link
+            to="/contact"
+            onClick={() => setMenuOpen(false)}
+            className="px-4 py-2.5 rounded-xl text-base font-medium text-kdark-800 hover:bg-surface-100 hover:text-primary-700 transition-colors"
+          >
+            Contact & Support
+          </Link>
           <Link
             to="/account"
             onClick={() => setMenuOpen(false)}
-            className="px-3.5 py-2.5 rounded-xl text-base font-medium text-kdark-800 hover:bg-surface-100 hover:text-primary-700 flex items-center justify-between transition-colors"
+            className="px-4 py-2.5 rounded-xl text-base font-medium text-kdark-800 hover:bg-surface-100 hover:text-primary-700 flex items-center justify-between transition-colors border-t border-surface-100 pt-3 mt-1"
           >
             <span>Customer Account</span>
-            <span className="text-xs bg-surface-200 px-2.5 py-1 rounded-full text-kdark-600 font-medium">Orders</span>
+            <span className="text-xs bg-surface-200 px-3 py-1 rounded-full text-kdark-600 font-medium">Orders</span>
           </Link>
-          <HashLink
-            smooth
-            to="/#contact"
-            onClick={() => setMenuOpen(false)}
-            className="px-3.5 py-2.5 rounded-xl text-base font-medium text-kdark-800 hover:bg-surface-100 hover:text-primary-700 transition-colors"
-          >
-            Contact & Support
-          </HashLink>
         </div>
       )}
     </header>
