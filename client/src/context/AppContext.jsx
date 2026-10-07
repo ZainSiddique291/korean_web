@@ -8,6 +8,7 @@ import {
   getStoredAccessToken,
   clearStoredAuth,
 } from '../services/api';
+import { translations } from '../utils/translations';
 
 const AppContext = createContext();
 
@@ -78,6 +79,35 @@ const INITIAL_ORDERS = [
 ];
 
 export const AppProvider = ({ children }) => {
+  // Language & Translation (EN / KO)
+  const [language, setLanguageState] = useState(() => {
+    try {
+      return localStorage.getItem('k_lang') || 'en';
+    } catch {
+      return 'en';
+    }
+  });
+
+  const setLanguage = (lang) => {
+    const next = lang === 'ko' ? 'ko' : 'en';
+    setLanguageState(next);
+    try {
+      localStorage.setItem('k_lang', next);
+    } catch {}
+  };
+
+  const t = useCallback((key, fallback) => {
+    const langDict = translations[language] || translations.en;
+    if (langDict && langDict[key] !== undefined) {
+      return langDict[key];
+    }
+    const enDict = translations.en;
+    if (enDict && enDict[key] !== undefined) {
+      return enDict[key];
+    }
+    return fallback !== undefined ? fallback : key;
+  }, [language]);
+
   // 1. Auth & Session
   const [user, setUser] = useState(() => {
     try {
@@ -657,6 +687,11 @@ export const AppProvider = ({ children }) => {
 
         // Customers
         customers,
+
+        // Language & Translation
+        language,
+        setLanguage,
+        t,
 
         // Toast
         toast,

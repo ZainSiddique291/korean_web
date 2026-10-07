@@ -11,7 +11,7 @@ const colorPills = {
 };
 
 const ProductCard = ({ product }) => {
-  const { addToCart, showToast } = useApp();
+  const { addToCart, showToast, t } = useApp();
   const [justAdded, setJustAdded] = useState(false);
   const {
     id,
@@ -132,11 +132,11 @@ const ProductCard = ({ product }) => {
         >
           {justAdded ? (
             <>
-              <Check className="w-4 h-4" /> Added to Bag
+              <Check className="w-4 h-4" /> {t('addedToBag', 'Added to Bag')}
             </>
           ) : (
             <>
-              <ShoppingBag className="w-4 h-4" /> Add to Bag
+              <ShoppingBag className="w-4 h-4" /> {t('addToBag', 'Add to Bag')}
             </>
           )}
         </button>

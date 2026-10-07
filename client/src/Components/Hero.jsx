@@ -1,7 +1,10 @@
 import { HashLink } from 'react-router-hash-link';
-import { Sparkles, ShieldCheck, Truck, Banknote, Award } from 'lucide-react';
+import { ShieldCheck, Truck, Banknote, Award } from 'lucide-react';
+import { useApp } from '../context/AppContext';
 
 const Hero = () => {
+  const { t } = useApp();
+
   return (
     <section id="home" className="relative bg-[#FAF3EB] border-b border-surface-200">
       {/* Main Hero Banner Container */}
@@ -37,8 +40,12 @@ const Hero = () => {
               <ShieldCheck className="w-5 h-5 sm:w-6 sm:h-6 text-primary-600" />
             </div>
             <div>
-              <h4 className="text-sm sm:text-base font-bold text-kdark-900 leading-snug">100% Original</h4>
-              <p className="text-xs text-gray-500 hidden sm:block">Direct from official Seoul labs</p>
+              <h4 className="text-sm sm:text-base font-bold text-kdark-900 leading-snug">
+                {t('trustOriginal', '100% Original')}
+              </h4>
+              <p className="text-xs text-gray-500 hidden sm:block">
+                {t('trustOriginalSub', 'Direct from official Seoul labs')}
+              </p>
             </div>
           </div>
 
@@ -47,8 +54,12 @@ const Hero = () => {
               <Truck className="w-5 h-5 sm:w-6 sm:h-6 text-brand-600" />
             </div>
             <div>
-              <h4 className="text-sm sm:text-base font-bold text-kdark-900 leading-snug">Express Delivery</h4>
-              <p className="text-xs text-gray-500 hidden sm:block">Fast shipping nationwide</p>
+              <h4 className="text-sm sm:text-base font-bold text-kdark-900 leading-snug">
+                {t('trustExpress', 'Express Delivery')}
+              </h4>
+              <p className="text-xs text-gray-500 hidden sm:block">
+                {t('trustExpressSub', 'Fast shipping nationwide')}
+              </p>
             </div>
           </div>
 
@@ -57,8 +68,12 @@ const Hero = () => {
               <Banknote className="w-5 h-5 sm:w-6 sm:h-6 text-sage-600" />
             </div>
             <div>
-              <h4 className="text-sm sm:text-base font-bold text-kdark-900 leading-snug">COD Available</h4>
-              <p className="text-xs text-gray-500 hidden sm:block">Pay securely on delivery</p>
+              <h4 className="text-sm sm:text-base font-bold text-kdark-900 leading-snug">
+                {t('trustCod', 'COD Available')}
+              </h4>
+              <p className="text-xs text-gray-500 hidden sm:block">
+                {t('trustCodSub', 'Pay securely on delivery')}
+              </p>
             </div>
           </div>
 
@@ -67,8 +82,12 @@ const Hero = () => {
               <Award className="w-5 h-5 sm:w-6 sm:h-6 text-primary-600" />
             </div>
             <div>
-              <h4 className="text-sm sm:text-base font-bold text-kdark-900 leading-snug">Korean Science</h4>
-              <p className="text-xs text-gray-500 hidden sm:block">Gentle & clinically proven</p>
+              <h4 className="text-sm sm:text-base font-bold text-kdark-900 leading-snug">
+                {t('trustScience', 'Korean Science')}
+              </h4>
+              <p className="text-xs text-gray-500 hidden sm:block">
+                {t('trustScienceSub', 'Gentle & clinically proven')}
+              </p>
             </div>
           </div>
         </div>
