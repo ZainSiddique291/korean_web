@@ -13,6 +13,9 @@ import {
   Package,
   LogOut,
   Globe,
+  Sparkles,
+  Droplets,
+  MessageSquare,
 } from 'lucide-react';
 import { useApp } from '../context/AppContext';
 
@@ -92,40 +95,40 @@ const Header = () => {
           )}
         </div>
 
-        {/* Navigation Links - Desktop */}
-        <nav className="hidden lg:flex items-center gap-1 xl:gap-2">
+        {/* Navigation Buttons - Desktop */}
+        <nav className="hidden lg:flex items-center gap-1.5 xl:gap-2">
           <Link
             to="/"
-            className="text-[14px] tracking-[0.01em] font-medium text-kdark-700 hover:text-primary-800 px-3.5 py-1.5 rounded-full hover:bg-surface-100/80 transition-all duration-200"
+            className="px-4 py-1.5 rounded-full text-[13px] font-semibold tracking-wide text-kdark-800 bg-surface-100/90 hover:bg-primary-600 hover:text-white border border-surface-200/90 hover:border-primary-600 shadow-2xs hover:shadow-xs hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 select-none"
           >
             {t('navHome', 'Home')}
           </Link>
           <HashLink
             smooth
             to="/#products"
-            className="text-[14px] tracking-[0.01em] font-medium text-kdark-700 hover:text-primary-800 px-3.5 py-1.5 rounded-full hover:bg-surface-100/80 transition-all duration-200"
+            className="px-4 py-1.5 rounded-full text-[13px] font-semibold tracking-wide text-kdark-800 bg-surface-100/90 hover:bg-primary-600 hover:text-white border border-surface-200/90 hover:border-primary-600 shadow-2xs hover:shadow-xs hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 select-none"
           >
-            {t('navCollection', 'Collection')}
+            {t('navShop', 'Shop')}
           </HashLink>
           <HashLink
             smooth
             to="/#how-to-use"
-            className="text-[14px] tracking-[0.01em] font-medium text-kdark-700 hover:text-primary-800 px-3.5 py-1.5 rounded-full hover:bg-surface-100/80 transition-all duration-200"
+            className="px-4 py-1.5 rounded-full text-[13px] font-semibold tracking-wide text-kdark-800 bg-surface-100/90 hover:bg-primary-600 hover:text-white border border-surface-200/90 hover:border-primary-600 shadow-2xs hover:shadow-xs hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 select-none"
           >
-            {t('navRitual', 'The Ritual')}
+            {t('navRitual', 'Ritual')}
           </HashLink>
           <HashLink
             smooth
             to="/#why-choose-us"
-            className="text-[14px] tracking-[0.01em] font-medium text-kdark-700 hover:text-primary-800 px-3.5 py-1.5 rounded-full hover:bg-surface-100/80 transition-all duration-200"
+            className="px-4 py-1.5 rounded-full text-[13px] font-semibold tracking-wide text-kdark-800 bg-surface-100/90 hover:bg-primary-600 hover:text-white border border-surface-200/90 hover:border-primary-600 shadow-2xs hover:shadow-xs hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 select-none"
           >
-            {t('navWhySeora', 'Why SEORA')}
+            {t('navAbout', 'About')}
           </HashLink>
           <Link
             to="/contact"
-            className="text-[14px] tracking-[0.01em] font-medium text-kdark-700 hover:text-primary-800 px-3.5 py-1.5 rounded-full hover:bg-surface-100/80 transition-all duration-200"
+            className="px-4 py-1.5 rounded-full text-[13px] font-semibold tracking-wide text-kdark-800 bg-surface-100/90 hover:bg-primary-600 hover:text-white border border-surface-200/90 hover:border-primary-600 shadow-2xs hover:shadow-xs hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 select-none"
           >
-            {t('navContact', 'Customer Care')}
+            {t('navContact', 'Contact')}
           </Link>
         </nav>
 
@@ -285,49 +288,52 @@ const Header = () => {
               </button>
             )}
           </div>
-          <Link
-            to="/"
-            onClick={() => setMenuOpen(false)}
-            className="px-4 py-2.5 rounded-xl text-sm font-medium text-kdark-800 hover:bg-surface-100 hover:text-primary-700 transition-colors flex items-center justify-between"
-          >
-            <span>{t('navHome', 'Home')}</span>
-            <span className="text-[10px] text-gray-400 font-mono">01</span>
-          </Link>
-          <HashLink
-            smooth
-            to="/#products"
-            onClick={() => setMenuOpen(false)}
-            className="px-4 py-2.5 rounded-xl text-sm font-medium text-kdark-800 hover:bg-surface-100 hover:text-primary-700 transition-colors flex items-center justify-between"
-          >
-            <span>{t('navCollection', 'Collection')}</span>
-            <span className="text-[10px] text-primary-600 font-medium">Serums</span>
-          </HashLink>
-          <HashLink
-            smooth
-            to="/#how-to-use"
-            onClick={() => setMenuOpen(false)}
-            className="px-4 py-2.5 rounded-xl text-sm font-medium text-kdark-800 hover:bg-surface-100 hover:text-primary-700 transition-colors flex items-center justify-between"
-          >
-            <span>{t('navRitual', 'The Ritual')}</span>
-            <span className="text-[10px] text-gray-400">4-Step</span>
-          </HashLink>
-          <HashLink
-            smooth
-            to="/#why-choose-us"
-            onClick={() => setMenuOpen(false)}
-            className="px-4 py-2.5 rounded-xl text-sm font-medium text-kdark-800 hover:bg-surface-100 hover:text-primary-700 transition-colors flex items-center justify-between"
-          >
-            <span>{t('navWhySeora', 'Why SEORA')}</span>
-            <span className="text-[10px] text-emerald-600 font-medium">Clean 5-Free</span>
-          </HashLink>
-          <Link
-            to="/contact"
-            onClick={() => setMenuOpen(false)}
-            className="px-4 py-2.5 rounded-xl text-sm font-medium text-kdark-800 hover:bg-surface-100 hover:text-primary-700 transition-colors flex items-center justify-between"
-          >
-            <span>{t('navContact', 'Customer Care')}</span>
-            <span className="text-[10px] text-gray-400">Support</span>
-          </Link>
+          {/* Mobile One-Word Navigation Buttons */}
+          <div className="grid grid-cols-2 gap-2 my-1">
+            <Link
+              to="/"
+              onClick={() => setMenuOpen(false)}
+              className="py-2.5 px-3 rounded-xl text-xs font-semibold text-kdark-800 bg-surface-50 hover:bg-primary-600 hover:text-white border border-surface-200/90 hover:border-primary-600 transition-all duration-200 flex items-center justify-center gap-1.5 shadow-2xs active:scale-95"
+            >
+              <Sparkles className="w-3.5 h-3.5 text-brand-500" />
+              <span>{t('navHome', 'Home')}</span>
+            </Link>
+            <HashLink
+              smooth
+              to="/#products"
+              onClick={() => setMenuOpen(false)}
+              className="py-2.5 px-3 rounded-xl text-xs font-semibold text-kdark-800 bg-surface-50 hover:bg-primary-600 hover:text-white border border-surface-200/90 hover:border-primary-600 transition-all duration-200 flex items-center justify-center gap-1.5 shadow-2xs active:scale-95"
+            >
+              <ShoppingBag className="w-3.5 h-3.5 text-primary-600" />
+              <span>{t('navShop', 'Shop')}</span>
+            </HashLink>
+            <HashLink
+              smooth
+              to="/#how-to-use"
+              onClick={() => setMenuOpen(false)}
+              className="py-2.5 px-3 rounded-xl text-xs font-semibold text-kdark-800 bg-surface-50 hover:bg-primary-600 hover:text-white border border-surface-200/90 hover:border-primary-600 transition-all duration-200 flex items-center justify-center gap-1.5 shadow-2xs active:scale-95"
+            >
+              <Droplets className="w-3.5 h-3.5 text-sky-600" />
+              <span>{t('navRitual', 'Ritual')}</span>
+            </HashLink>
+            <HashLink
+              smooth
+              to="/#why-choose-us"
+              onClick={() => setMenuOpen(false)}
+              className="py-2.5 px-3 rounded-xl text-xs font-semibold text-kdark-800 bg-surface-50 hover:bg-primary-600 hover:text-white border border-surface-200/90 hover:border-primary-600 transition-all duration-200 flex items-center justify-center gap-1.5 shadow-2xs active:scale-95"
+            >
+              <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
+              <span>{t('navAbout', 'About')}</span>
+            </HashLink>
+            <Link
+              to="/contact"
+              onClick={() => setMenuOpen(false)}
+              className="col-span-2 py-2.5 px-3 rounded-xl text-xs font-semibold text-kdark-800 bg-surface-50 hover:bg-primary-600 hover:text-white border border-surface-200/90 hover:border-primary-600 transition-all duration-200 flex items-center justify-center gap-1.5 shadow-2xs active:scale-95"
+            >
+              <MessageSquare className="w-3.5 h-3.5 text-brand-600" />
+              <span>{t('navContact', 'Contact')}</span>
+            </Link>
+          </div>
           <Link
             to="/account"
             onClick={() => setMenuOpen(false)}
