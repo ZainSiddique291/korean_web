@@ -9,6 +9,7 @@ import {
   clearStoredAuth,
 } from '../services/api';
 import { translations } from '../utils/translations';
+import { DEFAULT_SEORA_PRODUCTS } from '../data/defaultProducts';
 
 const AppContext = createContext();
 
@@ -390,9 +391,13 @@ export const AppProvider = ({ children }) => {
   const [products, setProducts] = useState(() => {
     try {
       const cached = localStorage.getItem('k_custom_products');
-      return cached ? JSON.parse(cached) : [];
+      if (cached) {
+        const parsed = JSON.parse(cached);
+        if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+      }
+      return DEFAULT_SEORA_PRODUCTS;
     } catch {
-      return [];
+      return DEFAULT_SEORA_PRODUCTS;
     }
   });
 
@@ -412,13 +417,14 @@ export const AppProvider = ({ children }) => {
       if (sortBy) params.sort = sortBy;
 
       const data = await productService.getProducts(params);
-      if (data.success && Array.isArray(data.products)) {
+      if (data.success && Array.isArray(data.products) && data.products.length > 0) {
         setProducts(data.products);
       } else {
-        setProducts([]);
+        setProducts((prev) => (prev && prev.length > 0 ? prev : DEFAULT_SEORA_PRODUCTS));
       }
     } catch {
-      setError('Unable to load products from server. Check your connection.');
+      // Backend API offline or deploying: retain authentic SEORA fallback catalog smoothly
+      setProducts((prev) => (prev && prev.length > 0 ? prev : DEFAULT_SEORA_PRODUCTS));
     } finally {
       setLoading(false);
     }

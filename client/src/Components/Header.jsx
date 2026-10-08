@@ -93,21 +93,39 @@ const Header = () => {
         </div>
 
         {/* Navigation Links - Desktop */}
-        <nav className="hidden lg:flex items-center gap-6">
-          <Link to="/" className="text-[15px] font-medium text-kdark-800 hover:text-primary-600 transition-colors">
+        <nav className="hidden lg:flex items-center gap-1 xl:gap-2">
+          <Link
+            to="/"
+            className="text-[14px] tracking-[0.01em] font-medium text-kdark-700 hover:text-primary-800 px-3.5 py-1.5 rounded-full hover:bg-surface-100/80 transition-all duration-200"
+          >
             {t('navHome', 'Home')}
           </Link>
-          <HashLink smooth to="/#products" className="text-[15px] font-medium text-kdark-800 hover:text-primary-600 transition-colors">
-            {t('navShopAll', 'Shop All')}
+          <HashLink
+            smooth
+            to="/#products"
+            className="text-[14px] tracking-[0.01em] font-medium text-kdark-700 hover:text-primary-800 px-3.5 py-1.5 rounded-full hover:bg-surface-100/80 transition-all duration-200"
+          >
+            {t('navCollection', 'Collection')}
           </HashLink>
-          <HashLink smooth to="/#how-to-use" className="text-[15px] font-medium text-kdark-800 hover:text-primary-600 transition-colors">
-            {t('navHowToUse', 'How to Use')}
+          <HashLink
+            smooth
+            to="/#how-to-use"
+            className="text-[14px] tracking-[0.01em] font-medium text-kdark-700 hover:text-primary-800 px-3.5 py-1.5 rounded-full hover:bg-surface-100/80 transition-all duration-200"
+          >
+            {t('navRitual', 'The Ritual')}
           </HashLink>
-          <HashLink smooth to="/#why-choose-us" className="text-[15px] font-medium text-kdark-800 hover:text-primary-600 transition-colors">
-            {t('navWhyUs', 'Why Us')}
+          <HashLink
+            smooth
+            to="/#why-choose-us"
+            className="text-[14px] tracking-[0.01em] font-medium text-kdark-700 hover:text-primary-800 px-3.5 py-1.5 rounded-full hover:bg-surface-100/80 transition-all duration-200"
+          >
+            {t('navWhySeora', 'Why SEORA')}
           </HashLink>
-          <Link to="/contact" className="text-[15px] font-medium text-kdark-800 hover:text-primary-600 transition-colors">
-            {t('navContact', 'Contact')}
+          <Link
+            to="/contact"
+            className="text-[14px] tracking-[0.01em] font-medium text-kdark-700 hover:text-primary-800 px-3.5 py-1.5 rounded-full hover:bg-surface-100/80 transition-all duration-200"
+          >
+            {t('navContact', 'Customer Care')}
           </Link>
         </nav>
 
@@ -270,40 +288,45 @@ const Header = () => {
           <Link
             to="/"
             onClick={() => setMenuOpen(false)}
-            className="px-4 py-2.5 rounded-xl text-base font-medium text-kdark-800 hover:bg-surface-100 hover:text-primary-700 transition-colors"
+            className="px-4 py-2.5 rounded-xl text-sm font-medium text-kdark-800 hover:bg-surface-100 hover:text-primary-700 transition-colors flex items-center justify-between"
           >
-            {t('navHome', 'Home')}
+            <span>{t('navHome', 'Home')}</span>
+            <span className="text-[10px] text-gray-400 font-mono">01</span>
           </Link>
           <HashLink
             smooth
             to="/#products"
             onClick={() => setMenuOpen(false)}
-            className="px-4 py-2.5 rounded-xl text-base font-medium text-kdark-800 hover:bg-surface-100 hover:text-primary-700 transition-colors"
+            className="px-4 py-2.5 rounded-xl text-sm font-medium text-kdark-800 hover:bg-surface-100 hover:text-primary-700 transition-colors flex items-center justify-between"
           >
-            {t('navShopAll', 'Shop Products')}
+            <span>{t('navCollection', 'Collection')}</span>
+            <span className="text-[10px] text-primary-600 font-medium">Serums</span>
           </HashLink>
           <HashLink
             smooth
             to="/#how-to-use"
             onClick={() => setMenuOpen(false)}
-            className="px-4 py-2.5 rounded-xl text-base font-medium text-kdark-800 hover:bg-surface-100 hover:text-primary-700 transition-colors"
+            className="px-4 py-2.5 rounded-xl text-sm font-medium text-kdark-800 hover:bg-surface-100 hover:text-primary-700 transition-colors flex items-center justify-between"
           >
-            {t('navHowToUse', 'How to Use')}
+            <span>{t('navRitual', 'The Ritual')}</span>
+            <span className="text-[10px] text-gray-400">4-Step</span>
           </HashLink>
           <HashLink
             smooth
             to="/#why-choose-us"
             onClick={() => setMenuOpen(false)}
-            className="px-4 py-2.5 rounded-xl text-base font-medium text-kdark-800 hover:bg-surface-100 hover:text-primary-700 transition-colors"
+            className="px-4 py-2.5 rounded-xl text-sm font-medium text-kdark-800 hover:bg-surface-100 hover:text-primary-700 transition-colors flex items-center justify-between"
           >
-            {t('navWhyUs', 'Why Choose Us')}
+            <span>{t('navWhySeora', 'Why SEORA')}</span>
+            <span className="text-[10px] text-emerald-600 font-medium">Clean 5-Free</span>
           </HashLink>
           <Link
             to="/contact"
             onClick={() => setMenuOpen(false)}
-            className="px-4 py-2.5 rounded-xl text-base font-medium text-kdark-800 hover:bg-surface-100 hover:text-primary-700 transition-colors"
+            className="px-4 py-2.5 rounded-xl text-sm font-medium text-kdark-800 hover:bg-surface-100 hover:text-primary-700 transition-colors flex items-center justify-between"
           >
-            {t('navContact', 'Contact & Support')}
+            <span>{t('navContact', 'Customer Care')}</span>
+            <span className="text-[10px] text-gray-400">Support</span>
           </Link>
           <Link
             to="/account"
