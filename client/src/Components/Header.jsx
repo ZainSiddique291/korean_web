@@ -14,7 +14,6 @@ import {
   LogOut,
   Globe,
   Sparkles,
-  Droplets,
   MessageSquare,
 } from 'lucide-react';
 import { useApp } from '../context/AppContext';
@@ -95,38 +94,31 @@ const Header = () => {
           )}
         </div>
 
-        {/* Navigation Buttons - Desktop */}
+        {/* Navigation Buttons - Desktop (Transparent) */}
         <nav className="hidden lg:flex items-center gap-1.5 xl:gap-2">
           <Link
             to="/"
-            className="px-4 py-1.5 rounded-full text-[13px] font-semibold tracking-wide text-kdark-800 bg-surface-100/90 hover:bg-primary-600 hover:text-white border border-surface-200/90 hover:border-primary-600 shadow-2xs hover:shadow-xs hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 select-none"
+            className="px-4 py-1.5 rounded-full text-[13px] font-semibold tracking-wide text-kdark-800 bg-transparent hover:text-primary-600 border border-surface-300 hover:border-primary-500 transition-all duration-200 select-none"
           >
             {t('navHome', 'Home')}
           </Link>
           <HashLink
             smooth
             to="/#products"
-            className="px-4 py-1.5 rounded-full text-[13px] font-semibold tracking-wide text-kdark-800 bg-surface-100/90 hover:bg-primary-600 hover:text-white border border-surface-200/90 hover:border-primary-600 shadow-2xs hover:shadow-xs hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 select-none"
+            className="px-4 py-1.5 rounded-full text-[13px] font-semibold tracking-wide text-kdark-800 bg-transparent hover:text-primary-600 border border-surface-300 hover:border-primary-500 transition-all duration-200 select-none"
           >
             {t('navShop', 'Shop')}
           </HashLink>
           <HashLink
             smooth
-            to="/#how-to-use"
-            className="px-4 py-1.5 rounded-full text-[13px] font-semibold tracking-wide text-kdark-800 bg-surface-100/90 hover:bg-primary-600 hover:text-white border border-surface-200/90 hover:border-primary-600 shadow-2xs hover:shadow-xs hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 select-none"
-          >
-            {t('navRitual', 'Ritual')}
-          </HashLink>
-          <HashLink
-            smooth
             to="/#why-choose-us"
-            className="px-4 py-1.5 rounded-full text-[13px] font-semibold tracking-wide text-kdark-800 bg-surface-100/90 hover:bg-primary-600 hover:text-white border border-surface-200/90 hover:border-primary-600 shadow-2xs hover:shadow-xs hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 select-none"
+            className="px-4 py-1.5 rounded-full text-[13px] font-semibold tracking-wide text-kdark-800 bg-transparent hover:text-primary-600 border border-surface-300 hover:border-primary-500 transition-all duration-200 select-none"
           >
             {t('navAbout', 'About')}
           </HashLink>
           <Link
             to="/contact"
-            className="px-4 py-1.5 rounded-full text-[13px] font-semibold tracking-wide text-kdark-800 bg-surface-100/90 hover:bg-primary-600 hover:text-white border border-surface-200/90 hover:border-primary-600 shadow-2xs hover:shadow-xs hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 select-none"
+            className="px-4 py-1.5 rounded-full text-[13px] font-semibold tracking-wide text-kdark-800 bg-transparent hover:text-primary-600 border border-surface-300 hover:border-primary-500 transition-all duration-200 select-none"
           >
             {t('navContact', 'Contact')}
           </Link>
@@ -139,11 +131,10 @@ const Header = () => {
             <button
               type="button"
               onClick={() => setLanguage('en')}
-              className={`px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full transition-all duration-150 shrink-0 whitespace-nowrap leading-none flex items-center gap-1 ${
-                language === 'en'
+              className={`px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full transition-all duration-150 shrink-0 whitespace-nowrap leading-none flex items-center gap-1 ${language === 'en'
                   ? 'bg-primary-600 text-white shadow-xs font-bold'
                   : 'text-gray-600 hover:text-kdark-900'
-              }`}
+                }`}
               title="Switch to English"
               aria-label="Switch to English"
             >
@@ -153,11 +144,10 @@ const Header = () => {
             <button
               type="button"
               onClick={() => setLanguage('ko')}
-              className={`px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full transition-all duration-150 shrink-0 whitespace-nowrap leading-none flex items-center gap-1 ${
-                language === 'ko'
+              className={`px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full transition-all duration-150 shrink-0 whitespace-nowrap leading-none flex items-center gap-1 ${language === 'ko'
                   ? 'bg-primary-600 text-white shadow-xs font-bold'
                   : 'text-gray-600 hover:text-kdark-900'
-              }`}
+                }`}
               title="한국어로 번역 (Translate to Korean)"
               aria-label="Translate to Korean"
             >
@@ -255,18 +245,16 @@ const Header = () => {
               <button
                 type="button"
                 onClick={() => setLanguage('en')}
-                className={`px-3 py-1 rounded-full transition-all ${
-                  language === 'en' ? 'bg-primary-600 text-white shadow-xs' : 'text-gray-500'
-                }`}
+                className={`px-3 py-1 rounded-full transition-all ${language === 'en' ? 'bg-primary-600 text-white shadow-xs' : 'text-gray-500'
+                  }`}
               >
                 EN
               </button>
               <button
                 type="button"
                 onClick={() => setLanguage('ko')}
-                className={`px-3 py-1 rounded-full transition-all ${
-                  language === 'ko' ? 'bg-primary-600 text-white shadow-xs' : 'text-gray-500'
-                }`}
+                className={`px-3 py-1 rounded-full transition-all ${language === 'ko' ? 'bg-primary-600 text-white shadow-xs' : 'text-gray-500'
+                  }`}
               >
                 한국어
               </button>
@@ -288,39 +276,30 @@ const Header = () => {
               </button>
             )}
           </div>
-          {/* Mobile One-Word Navigation Buttons */}
+          {/* Mobile One-Word Navigation Buttons (Transparent) */}
           <div className="grid grid-cols-2 gap-2 my-1">
             <Link
               to="/"
               onClick={() => setMenuOpen(false)}
-              className="py-2.5 px-3 rounded-xl text-xs font-semibold text-kdark-800 bg-surface-50 hover:bg-primary-600 hover:text-white border border-surface-200/90 hover:border-primary-600 transition-all duration-200 flex items-center justify-center gap-1.5 shadow-2xs active:scale-95"
+              className="py-2.5 px-3 rounded-xl text-xs font-semibold text-kdark-800 bg-transparent hover:text-primary-600 border border-surface-300 hover:border-primary-500 transition-all duration-200 flex items-center justify-center gap-1.5 active:scale-95"
             >
-              <Sparkles className="w-3.5 h-3.5 text-brand-500" />
+              <Sparkles className="w-3.5 h-3.5 text-brand-600" />
               <span>{t('navHome', 'Home')}</span>
             </Link>
             <HashLink
               smooth
               to="/#products"
               onClick={() => setMenuOpen(false)}
-              className="py-2.5 px-3 rounded-xl text-xs font-semibold text-kdark-800 bg-surface-50 hover:bg-primary-600 hover:text-white border border-surface-200/90 hover:border-primary-600 transition-all duration-200 flex items-center justify-center gap-1.5 shadow-2xs active:scale-95"
+              className="py-2.5 px-3 rounded-xl text-xs font-semibold text-kdark-800 bg-transparent hover:text-primary-600 border border-surface-300 hover:border-primary-500 transition-all duration-200 flex items-center justify-center gap-1.5 active:scale-95"
             >
               <ShoppingBag className="w-3.5 h-3.5 text-primary-600" />
               <span>{t('navShop', 'Shop')}</span>
             </HashLink>
             <HashLink
               smooth
-              to="/#how-to-use"
-              onClick={() => setMenuOpen(false)}
-              className="py-2.5 px-3 rounded-xl text-xs font-semibold text-kdark-800 bg-surface-50 hover:bg-primary-600 hover:text-white border border-surface-200/90 hover:border-primary-600 transition-all duration-200 flex items-center justify-center gap-1.5 shadow-2xs active:scale-95"
-            >
-              <Droplets className="w-3.5 h-3.5 text-sky-600" />
-              <span>{t('navRitual', 'Ritual')}</span>
-            </HashLink>
-            <HashLink
-              smooth
               to="/#why-choose-us"
               onClick={() => setMenuOpen(false)}
-              className="py-2.5 px-3 rounded-xl text-xs font-semibold text-kdark-800 bg-surface-50 hover:bg-primary-600 hover:text-white border border-surface-200/90 hover:border-primary-600 transition-all duration-200 flex items-center justify-center gap-1.5 shadow-2xs active:scale-95"
+              className="py-2.5 px-3 rounded-xl text-xs font-semibold text-kdark-800 bg-transparent hover:text-primary-600 border border-surface-300 hover:border-primary-500 transition-all duration-200 flex items-center justify-center gap-1.5 active:scale-95"
             >
               <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
               <span>{t('navAbout', 'About')}</span>
@@ -328,7 +307,7 @@ const Header = () => {
             <Link
               to="/contact"
               onClick={() => setMenuOpen(false)}
-              className="col-span-2 py-2.5 px-3 rounded-xl text-xs font-semibold text-kdark-800 bg-surface-50 hover:bg-primary-600 hover:text-white border border-surface-200/90 hover:border-primary-600 transition-all duration-200 flex items-center justify-center gap-1.5 shadow-2xs active:scale-95"
+              className="py-2.5 px-3 rounded-xl text-xs font-semibold text-kdark-800 bg-transparent hover:text-primary-600 border border-surface-300 hover:border-primary-500 transition-all duration-200 flex items-center justify-center gap-1.5 active:scale-95"
             >
               <MessageSquare className="w-3.5 h-3.5 text-brand-600" />
               <span>{t('navContact', 'Contact')}</span>
