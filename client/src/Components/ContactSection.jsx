@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Mail, Phone, MapPin, Send, CheckCircle2, Clock, ShieldCheck, Sparkles, MessageSquare, User, HelpCircle } from 'lucide-react';
 import { useApp } from '../context/AppContext';
+import { contactService } from '../services/api';
 
 const ContactSection = ({ id = "contact" }) => {
   const { showToast, t } = useApp();
@@ -18,7 +19,7 @@ const ContactSection = ({ id = "contact" }) => {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!form.name.trim() || !form.email.trim() || !form.message.trim()) {
       showToast('Please fill in your name, email, and message.');
@@ -32,12 +33,17 @@ const ContactSection = ({ id = "contact" }) => {
     }
 
     setSubmitting(true);
-    setTimeout(() => {
-      setSubmitting(false);
+    try {
+      const res = await contactService.submitContact(form);
       setSubmitted(true);
-      showToast('Your message has been sent successfully! We will get back to you soon. 💌');
+      showToast(res.message || 'Your inquiry has been received! Our skincare team will reach out promptly.');
       setForm({ name: '', email: '', phone: '', subject: '', message: '' });
-    }, 800);
+    } catch (err) {
+      const msg = err.response?.data?.message || err.message || 'Failed to submit inquiry. Please try again.';
+      showToast(msg);
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (

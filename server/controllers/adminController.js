@@ -8,16 +8,29 @@ import User from '../models/User.js';
 export const getAdminStats = async (req, res) => {
   try {
     const orders = await Order.find();
-    const totalProducts = await Product.countDocuments();
+    const products = await Product.find();
     const registeredUsers = await User.countDocuments({ role: 'customer' });
 
-    const totalRevenue = orders.reduce((sum, ord) => sum + Number(ord.total || 0), 0);
+    // REVENUE CALCULATION:
+    // Exclude Cancelled orders and exclude unpaid orders (only Paid or Delivered COD count as realized revenue)
+    const realizedOrders = orders.filter((o) => {
+      if (o.status === 'Cancelled') return false;
+      return o.paymentStatus === 'Paid' || o.status === 'Delivered';
+    });
+
+    const totalRevenue = realizedOrders.reduce((sum, ord) => sum + Number(ord.total || 0), 0);
     const totalOrders = orders.length;
+    const totalProducts = products.length;
 
     const deliveredCount = orders.filter((o) => o.status === 'Delivered').length;
     const processingCount = orders.filter((o) => o.status === 'Processing').length;
     const shippedCount = orders.filter((o) => o.status === 'Shipped').length;
     const cancelledCount = orders.filter((o) => o.status === 'Cancelled').length;
+
+    // Inventory metrics
+    const totalStock = products.reduce((sum, p) => sum + (Number(p.stock) || 0), 0);
+    const lowStockCount = products.filter((p) => (Number(p.stock) || 0) <= 10).length;
+    const outOfStockCount = products.filter((p) => (Number(p.stock) || 0) <= 0).length;
 
     // Unique customers from orders
     const customerEmails = new Set(
@@ -32,6 +45,9 @@ export const getAdminStats = async (req, res) => {
         totalOrders,
         totalProducts,
         totalCustomers,
+        totalStock,
+        lowStockCount,
+        outOfStockCount,
         deliveredCount,
         processingCount,
         shippedCount,
@@ -58,6 +74,9 @@ export const getAdminCustomers = async (req, res) => {
       if (!ord.customer?.email) return;
       const key = ord.customer.email.toLowerCase();
 
+      // Only count non-cancelled spend towards totalSpent
+      const orderAmount = ord.status !== 'Cancelled' ? Number(ord.total || 0) : 0;
+
       if (!map.has(key)) {
         map.set(key, {
           name: ord.customer.name,
@@ -65,13 +84,13 @@ export const getAdminCustomers = async (req, res) => {
           phone: ord.customer.phone || 'N/A',
           city: ord.customer.city || 'N/A',
           orderCount: 1,
-          totalSpent: Number(ord.total || 0),
+          totalSpent: orderAmount,
           latestOrderDate: ord.createdAt,
         });
       } else {
         const existing = map.get(key);
         existing.orderCount += 1;
-        existing.totalSpent += Number(ord.total || 0);
+        existing.totalSpent += orderAmount;
         if (new Date(ord.createdAt) > new Date(existing.latestOrderDate)) {
           existing.latestOrderDate = ord.createdAt;
         }

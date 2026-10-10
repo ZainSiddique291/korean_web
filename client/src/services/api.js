@@ -270,3 +270,10 @@ export const cartService = {
 };
 
 export default api;
+
+export const contactService = {
+  submitContact: async (data) => {
+    const res = await api.post('/contact', data);
+    return res.data;
+  },
+};

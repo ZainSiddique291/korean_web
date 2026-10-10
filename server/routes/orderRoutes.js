@@ -17,7 +17,7 @@ router.route('/')
 router.get('/my-orders', protect, getMyOrders);
 
 router.route('/:id')
-  .get(getOrderById);
+  .get(optionalAuth, getOrderById);
 
 router.route('/:id/status')
   .put(protect, admin, updateOrderStatus);

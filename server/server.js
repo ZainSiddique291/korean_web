@@ -12,6 +12,7 @@ import productRoutes from './routes/productRoutes.js';
 import orderRoutes from './routes/orderRoutes.js';
 import adminRoutes from './routes/adminRoutes.js';
 import cartRoutes from './routes/cartRoutes.js';
+import contactRoutes from './routes/contactRoutes.js';
 import { notFound, errorHandler } from './middleware/errorMiddleware.js';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -63,6 +64,9 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(morgan('dev'));
 
+// Serve static product images
+app.use('/images', express.static(path.resolve(__dirname, '../client/public/images')));
+
 // API Root & Health Check
 app.get('/', (req, res) => {
   res.json({
@@ -87,6 +91,7 @@ app.use('/api/products', productRoutes);
 app.use('/api/orders', orderRoutes);
 app.use('/api/admin', adminRoutes);
 app.use('/api/cart', cartRoutes);
+app.use('/api/contact', contactRoutes);
 
 // Error Handling Middlewares
 app.use(notFound);

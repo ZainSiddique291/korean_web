@@ -19,66 +19,7 @@ export const useApp = () => {
   return ctx;
 };
 
-const INITIAL_ORDERS = [
-  {
-    id: 'ORD-9482',
-    date: '2026-10-02T10:30:00Z',
-    customer: {
-      name: 'Amina Tariq',
-      email: 'amina.t@example.com',
-      phone: '+92 321 8847291',
-      address: 'House 42, Street 8, DHA Phase 5',
-      city: 'Lahore',
-    },
-    products: [
-      {
-        id: 1,
-        title: 'Essence Toner Hyaluronic Acid Deep Hydration',
-        price: 34.0,
-        quantity: 2,
-        thumbnail: 'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=400&q=80',
-      },
-      {
-        id: 2,
-        title: 'Centella Calming Relief Ampoule',
-        price: 28.0,
-        quantity: 1,
-        thumbnail: 'https://images.unsplash.com/photo-1608248597359-0a91176b6ffc?w=400&q=80',
-      },
-    ],
-    deliveryMethod: 'Express Delivery (2-3 Days)',
-    paymentMethod: 'Cash on Delivery (COD)',
-    paymentStatus: 'Pending (COD)',
-    status: 'Delivered',
-    total: 96.0,
-  },
-  {
-    id: 'ORD-9485',
-    date: '2026-10-04T15:15:00Z',
-    customer: {
-      name: 'Zainab Noor',
-      email: 'zainab.noor@example.com',
-      phone: '+92 300 4592019',
-      address: 'Apartment 4B, Gulberg Heights',
-      city: 'Lahore',
-    },
-    products: [
-      {
-        id: 3,
-        title: 'Glow Niacinamide Serum 10% + Zinc',
-        price: 26.5,
-        quantity: 1,
-        thumbnail: 'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=400&q=80',
-      },
-    ],
-    deliveryMethod: 'Standard Delivery (3-5 Days)',
-    paymentMethod: 'JazzCash',
-    paymentStatus: 'Paid',
-    status: 'Processing',
-    total: 26.5,
-  },
-];
-
+// Genuine live orders loaded from database
 export const AppProvider = ({ children }) => {
   // Language & Translation (EN / KO)
   const [language, setLanguageState] = useState(() => {
@@ -241,18 +182,7 @@ export const AppProvider = ({ children }) => {
   };
 
   const continueWithGoogle = () => {
-    const googleUser = {
-      name: 'Ayesha Khan',
-      email: 'ayesha.khan@gmail.com',
-      phone: '+92 302 9845112',
-      address: 'Block C, Model Town, Lahore',
-      city: 'Lahore',
-      avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&auto=format&fit=crop&q=80',
-      isGuest: false,
-      provider: 'Google',
-    };
-    loginUser(googleUser);
-    showToast('Signed in with Google ✅');
+    showToast('Google OAuth is not configured with client credentials. Please sign in with email/password or proceed as guest.');
   };
 
   const continueAsGuest = (guestInfo = {}) => {
@@ -417,14 +347,14 @@ export const AppProvider = ({ children }) => {
       if (sortBy) params.sort = sortBy;
 
       const data = await productService.getProducts(params);
-      if (data.success && Array.isArray(data.products) && data.products.length > 0) {
+      if (data.success && Array.isArray(data.products)) {
         setProducts(data.products);
       } else {
-        setProducts((prev) => (prev && prev.length > 0 ? prev : DEFAULT_SEORA_PRODUCTS));
+        setProducts([]);
       }
-    } catch {
-      // Backend API offline or deploying: retain authentic SEORA fallback catalog smoothly
-      setProducts((prev) => (prev && prev.length > 0 ? prev : DEFAULT_SEORA_PRODUCTS));
+    } catch (err) {
+      setError(err.response?.data?.message || 'Unable to connect to product catalog');
+      setProducts([]);
     } finally {
       setLoading(false);
     }
@@ -439,61 +369,44 @@ export const AppProvider = ({ children }) => {
       const res = await productService.createProduct(newProd);
       if (res.success && res.product) {
         setProducts((prev) => [res.product, ...prev]);
-        showToast('Product added successfully ✅');
+        showToast('Product added successfully');
         return res.product;
       }
-    } catch {
-      // Local fallback
-      const product = {
-        ...newProd,
-        id: Date.now(),
-        rating: newProd.rating || 5.0,
-        stock: Number(newProd.stock) || 20,
-        price: Number(newProd.price) || 25,
-        thumbnail:
-          newProd.thumbnail ||
-          'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=500&q=80',
-      };
-      setProducts((prev) => [product, ...prev]);
-      showToast('Product added successfully ✅');
-      return product;
+    } catch (err) {
+      showToast(err.response?.data?.message || 'Failed to add product');
+      throw err;
     }
   };
 
   const updateProduct = async (id, fields) => {
     try {
-      await productService.updateProduct(id, fields);
-      setProducts((prev) =>
-        prev.map((p) => (p.id === id || p._id === id ? { ...p, ...fields } : p))
-      );
-      showToast('Product updated ✅');
-    } catch {
-      setProducts((prev) =>
-        prev.map((p) => (p.id === id || p._id === id ? { ...p, ...fields } : p))
-      );
-      showToast('Product updated ✅');
+      const res = await productService.updateProduct(id, fields);
+      if (res.success && res.product) {
+        setProducts((prev) =>
+          prev.map((p) => (p.id === id || p._id === id ? res.product : p))
+        );
+        showToast('Product updated successfully');
+        return res.product;
+      }
+    } catch (err) {
+      showToast(err.response?.data?.message || 'Failed to update product');
+      throw err;
     }
   };
 
   const deleteProduct = async (id) => {
     try {
       await productService.deleteProduct(id);
-    } catch {
-      // Ignore network errors for local delete
+      setProducts((prev) => prev.filter((p) => p.id !== id && p._id !== id));
+      showToast('Product removed from store');
+    } catch (err) {
+      showToast(err.response?.data?.message || 'Failed to delete product');
+      throw err;
     }
-    setProducts((prev) => prev.filter((p) => p.id !== id && p._id !== id));
-    showToast('Product removed');
   };
 
   // 4. Orders Management (MongoDB Backend + Persistence)
-  const [orders, setOrders] = useState(() => {
-    try {
-      const stored = localStorage.getItem('k_orders');
-      return stored ? JSON.parse(stored) : INITIAL_ORDERS;
-    } catch {
-      return INITIAL_ORDERS;
-    }
-  });
+  const [orders, setOrders] = useState([]);
 
   const fetchOrders = useCallback(async () => {
     if (!user || user.isGuest) return;
@@ -530,20 +443,12 @@ export const AppProvider = ({ children }) => {
         clearCart();
         return res.order;
       }
-    } catch {
-      // Fallback offline order creation
+      throw new Error(res.message || 'Order creation failed');
+    } catch (err) {
+      const msg = err.response?.data?.message || err.message || 'Failed to place order';
+      showToast(msg);
+      throw err;
     }
-
-    const orderId = `ORD-${Math.floor(1000 + Math.random() * 9000)}`;
-    const newOrder = {
-      id: orderId,
-      date: new Date().toISOString(),
-      status: 'Processing',
-      ...orderData,
-    };
-    setOrders((prev) => [newOrder, ...prev]);
-    clearCart();
-    return newOrder;
   };
 
   const updateOrderStatus = async (orderId, newStatus) => {

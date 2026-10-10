@@ -44,6 +44,7 @@ const orderSchema = new mongoose.Schema(
       enum: ['Cash on Delivery (COD)', 'Bank Transfer', 'JazzCash', 'Card'],
       default: 'Cash on Delivery (COD)',
     },
+    paymentReference: { type: String, default: 'N/A' },
     paymentStatus: {
       type: String,
       enum: ['Pending (COD)', 'Pending Verification', 'Paid', 'Failed'],
