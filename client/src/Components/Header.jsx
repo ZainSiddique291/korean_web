@@ -174,7 +174,7 @@ const Header = () => {
               <div className="absolute right-0 top-full mt-2 w-52 bg-white rounded-2xl shadow-xl border border-surface-200 py-1.5 z-50 animate-fade-in">
                 <div className="px-4 py-2 border-b border-surface-100">
                   <p className="text-xs font-semibold text-kdark-900 truncate">{user.name}</p>
-                  <p className="text-[11px] text-gray-400 truncate">{user.email || 'Guest User'}</p>
+                  <p className="text-[11px] text-gray-400 truncate">{user.email || 'Member'}</p>
                 </div>
                 <Link
                   to="/account"

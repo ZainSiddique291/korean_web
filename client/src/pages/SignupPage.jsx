@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { UserPlus, Sparkles, ArrowRight } from 'lucide-react';
+import { UserPlus, ArrowRight } from 'lucide-react';
 import { useApp } from '../context/AppContext';
 
 const SignupPage = () => {
-  const { registerUser, continueWithGoogle, continueAsGuest, showToast } = useApp();
+  const { registerUser, continueWithGoogle, showToast } = useApp();
   const navigate = useNavigate();
   const [form, setForm] = useState({ name: '', email: '', password: '', phone: '', address: '' });
   const [loading, setLoading] = useState(false);
@@ -30,12 +30,6 @@ const SignupPage = () => {
 
   const handleGoogle = () => {
     continueWithGoogle();
-    navigate('/account');
-  };
-
-  const handleGuest = () => {
-    continueAsGuest();
-    navigate('/cart');
   };
 
   return (
@@ -79,14 +73,6 @@ const SignupPage = () => {
             Sign Up with Google
           </button>
 
-          <button
-            type="button"
-            onClick={handleGuest}
-            className="w-full flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl border border-dashed border-primary-300 bg-primary-50/60 hover:bg-primary-50 text-primary-700 text-sm font-semibold transition-all"
-          >
-            <Sparkles className="w-4 h-4 text-primary-600" />
-            Continue as Guest (Skip Account Creation)
-          </button>
         </div>
 
         <div className="relative flex items-center justify-center my-5">

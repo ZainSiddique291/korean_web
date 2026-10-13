@@ -87,7 +87,7 @@ const ProductDetailPage = () => {
     if (!product) return;
     addToCart(product, quantity);
     setAdded(true);
-    showToast(`Added ${quantity} item(s) to bag ✨`);
+    showToast(`Added ${quantity} item(s) to bag`);
     setTimeout(() => setAdded(false), 1500);
   };
 

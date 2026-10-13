@@ -272,8 +272,9 @@ const ContactSection = ({ id = "contact" }) => {
                       </>
                     )}
                   </button>
-                  <p className="text-[11px] text-gray-400 text-center mt-2">
-                    {t('privacyNotice', '🔒 Your privacy is protected. We will never share your personal information.')}
+                  <p className="text-[11px] text-gray-400 text-center mt-2 flex items-center justify-center gap-1.5">
+                    <ShieldCheck className="w-3.5 h-3.5 text-primary-600 shrink-0" />
+                    <span>{t('privacyNotice', 'Your privacy is protected. We will never share your personal information.')}</span>
                   </p>
                 </form>
               )}

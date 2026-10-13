@@ -99,15 +99,9 @@ const CustomerPanelPage = () => {
                 <h1 className="text-2xl sm:text-3xl font-bold text-kdark-900 font-serif">
                   {user.name}
                 </h1>
-                {user.isGuest ? (
-                  <span className="text-xs font-semibold bg-surface-200 text-gray-700 px-2.5 py-0.5 rounded-full">
-                    Guest Account
-                  </span>
-                ) : (
-                  <span className="text-xs font-semibold bg-primary-100 text-primary-800 px-2.5 py-0.5 rounded-full">
-                    Verified Member
-                  </span>
-                )}
+                <span className="text-xs font-semibold bg-primary-100 text-primary-800 px-2.5 py-0.5 rounded-full border border-primary-200">
+                  Verified Member
+                </span>
               </div>
               <p className="text-sm text-gray-500 mt-1 flex items-center gap-2">
                 <span>{user.email || 'No email attached'}</span>

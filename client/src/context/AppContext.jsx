@@ -60,7 +60,11 @@ export const AppProvider = ({ children }) => {
   });
 
   const [authModalOpen, setAuthModalOpen] = useState(false);
-  const openAuthModal = () => setAuthModalOpen(true);
+  const [authModalTab, setAuthModalTab] = useState('login');
+  const openAuthModal = (defaultTab = 'login') => {
+    setAuthModalTab(defaultTab === 'signup' ? 'signup' : 'login');
+    setAuthModalOpen(true);
+  };
   const closeAuthModal = () => setAuthModalOpen(false);
 
   // 6. Toast Notification
@@ -117,7 +121,7 @@ export const AppProvider = ({ children }) => {
         if (res.success) {
           setUser(res.user);
           closeAuthModal();
-          showToast(`Welcome back, ${res.user.name}! ✨`);
+          showToast(`Welcome back, ${res.user.name}!`);
 
           // HYBRID MODEL: Merge guest localStorage cart with user's MongoDB cart on login
           try {
@@ -157,9 +161,9 @@ export const AppProvider = ({ children }) => {
       if (res.success) {
         setUser(res.user);
         closeAuthModal();
-        showToast(`Account created! Welcome, ${res.user.name} ✨`);
+        showToast(`Account created! Welcome, ${res.user.name}!`);
 
-        // HYBRID MODEL: Persist guest cart to new MongoDB account
+        // HYBRID MODEL: Persist cart to new MongoDB account
         try {
           const localItems = JSON.parse(localStorage.getItem('k_cart') || '[]');
           if (localItems.length > 0) {
@@ -182,7 +186,7 @@ export const AppProvider = ({ children }) => {
   };
 
   const continueWithGoogle = () => {
-    showToast('Google OAuth is not configured with client credentials. Please sign in with email/password or proceed as guest.');
+    showToast('Google sign-in is coming soon. Please register or sign in with your email.');
   };
 
   const continueAsGuest = (guestInfo = {}) => {
@@ -220,7 +224,7 @@ export const AppProvider = ({ children }) => {
         const res = await authService.updateProfile(updatedFields);
         if (res.success) {
           setUser(res.user);
-          showToast('Profile updated ✅');
+          showToast('Profile updated successfully');
           return;
         }
       } catch (err) {
@@ -228,13 +232,13 @@ export const AppProvider = ({ children }) => {
         return;
       }
     }
-    // Local / Guest update
+    // Local fallback update
     setUser((prev) => {
       const next = { ...prev, ...updatedFields };
       localStorage.setItem('k_user', JSON.stringify(next));
       return next;
     });
-    showToast('Profile updated ✅');
+    showToast('Profile updated successfully');
   };
 
   const login = !!user && !user.isGuest;
@@ -347,14 +351,20 @@ export const AppProvider = ({ children }) => {
       if (sortBy) params.sort = sortBy;
 
       const data = await productService.getProducts(params);
-      if (data.success && Array.isArray(data.products)) {
+      if (data.success && Array.isArray(data.products) && data.products.length > 0) {
         setProducts(data.products);
+      } else if (!searchTerm && (!filter || filter === 'all')) {
+        setProducts(DEFAULT_SEORA_PRODUCTS);
       } else {
         setProducts([]);
       }
     } catch (err) {
-      setError(err.response?.data?.message || 'Unable to connect to product catalog');
-      setProducts([]);
+      console.warn('Product fetch error:', err.message);
+      if (!searchTerm && (!filter || filter === 'all')) {
+        setProducts(DEFAULT_SEORA_PRODUCTS);
+      } else {
+        setError(err.response?.data?.message || 'Unable to connect to product catalog');
+      }
     } finally {
       setLoading(false);
     }
@@ -558,6 +568,8 @@ export const AppProvider = ({ children }) => {
         logout,
         updateUserProfile,
         authModalOpen,
+        authModalTab,
+        setAuthModalTab,
         openAuthModal,
         closeAuthModal,
 

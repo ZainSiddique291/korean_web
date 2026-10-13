@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { LogIn, Eye, EyeOff, Sparkles, ArrowRight } from 'lucide-react';
+import { LogIn, Eye, EyeOff, ArrowRight } from 'lucide-react';
 import { useApp } from '../context/AppContext';
 
 const LoginPage = () => {
-  const { loginUser, continueWithGoogle, continueAsGuest, showToast } = useApp();
+  const { loginUser, continueWithGoogle, showToast } = useApp();
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -30,12 +30,6 @@ const LoginPage = () => {
 
   const handleGoogle = () => {
     continueWithGoogle();
-    navigate('/account');
-  };
-
-  const handleGuest = () => {
-    continueAsGuest();
-    navigate('/cart');
   };
 
   return (
@@ -79,14 +73,6 @@ const LoginPage = () => {
             Continue with Google
           </button>
 
-          <button
-            type="button"
-            onClick={handleGuest}
-            className="w-full flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl border border-dashed border-primary-300 bg-primary-50/60 hover:bg-primary-50 text-primary-700 text-sm font-semibold transition-all"
-          >
-            <Sparkles className="w-4 h-4 text-primary-600" />
-            Continue as Guest (No Account Required)
-          </button>
         </div>
 
         <div className="relative flex items-center justify-center my-5">

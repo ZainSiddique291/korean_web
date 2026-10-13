@@ -50,7 +50,7 @@ export const translations = {
     showingFormulas: "Showing {count} SEORA formula{s}",
     sortBy: "Sort by:",
     sortFeatured: "Featured Collection",
-    sortRating: "Top Rated (★)",
+    sortRating: "Top Rated",
     sortPriceAsc: "Price: Low to High",
     sortPriceDesc: "Price: High to Low",
     noProductsMatch: "No SEORA formula matches your search",
@@ -166,7 +166,7 @@ export const translations = {
     messageSentTitle: "Message Received!",
     messageSentDesc: "Thank you for reaching out. One of our skincare specialists has received your note and will get back to your email within a few hours.",
     sendAnotherBtn: "Send Another Message",
-    privacyNotice: "🔒 Your privacy is protected. We will never share your personal information.",
+    privacyNotice: "Your privacy is protected. We will never share your personal information.",
 
     // Footer
     footerOriginalTitle: "100% Original Seoul Formulations",
@@ -247,13 +247,13 @@ export const translations = {
     showingFormulas: "총 {count}개의 SEORA 포뮬러",
     sortBy: "정렬 기준:",
     sortFeatured: "추천 상품",
-    sortRating: "평점 높은 순 (★)",
+    sortRating: "평점 높은 순",
     sortPriceAsc: "가격: 낮은 순",
     sortPriceDesc: "가격: 높은 순",
     noProductsMatch: "검색 결과와 일치하는 SEORA 제품이 없습니다",
     noProductsTip: "\"나이아신아마이드\", \"아크네\", \"비타민 C\" 등으로 검색해 보세요.",
     addToBag: "장바구니 담기",
-    addedToBag: "장바구니에 담김 ✓",
+    addedToBag: "장바구니에 담김",
 
     // Who's It For Section
     whoBadge: "피부 타입별 맞춤 솔루션",
@@ -363,7 +363,7 @@ export const translations = {
     messageSentTitle: "메시지가 정상적으로 전송되었습니다!",
     messageSentDesc: "문의해 주셔서 감사합니다. 담당 뷰티 전문가가 내용을 확인한 후 몇 시간 이내에 이메일로 답변을 드리겠습니다.",
     sendAnotherBtn: "다른 메시지 작성하기",
-    privacyNotice: "🔒 고객님의 개인정보는 안전하게 보호되며 외부에 제공되지 않습니다.",
+    privacyNotice: "고객님의 개인정보는 안전하게 보호되며 외부에 제공되지 않습니다.",
 
     // Footer
     footerOriginalTitle: "100% 서울 정품 포뮬러",

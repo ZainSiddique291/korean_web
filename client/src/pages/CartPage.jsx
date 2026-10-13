@@ -1,4 +1,4 @@
-import { ArrowLeft, Trash2, ShoppingBag, ShieldCheck, Sparkles } from 'lucide-react';
+import { ArrowLeft, Trash2, ShoppingBag, ShieldCheck, Sparkles, Minus, Plus } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useApp } from '../context/AppContext';
 
@@ -53,7 +53,7 @@ const CartPage = () => {
             <Sparkles className="w-5 h-5 text-brand-500 shrink-0" />
             {isFreeShipping ? (
               <span className="font-semibold text-emerald-700">
-                🎉 Congratulations! You have unlocked Free Express Shipping!
+                Congratulations! You have unlocked Free Express Shipping!
               </span>
             ) : (
               <span>
@@ -100,28 +100,32 @@ const CartPage = () => {
                     </div>
                   </div>
 
-                  <div className="flex items-center justify-between sm:justify-end gap-3 sm:gap-5 border-t sm:border-t-0 pt-2 sm:pt-0">
+                  <div className="flex items-center justify-between sm:justify-end gap-3 sm:gap-5 border-t border-surface-100 sm:border-t-0 pt-3 sm:pt-0">
                     {/* Quantity Controls */}
-                    <div className="flex items-center gap-2 shrink-0 bg-surface-100 rounded-full p-1 border border-surface-200">
+                    <div className="flex items-center gap-1.5 sm:gap-2 shrink-0 bg-surface-100/95 rounded-full p-1 border border-surface-200/90 shadow-2xs">
                       <button
                         onClick={() => updateQty(itemId, -1)}
-                        className="w-7 h-7 rounded-full bg-white flex items-center justify-center text-sm font-bold text-gray-700 hover:bg-surface-200 transition-colors"
+                        className="w-9 h-9 sm:w-8 sm:h-8 rounded-full bg-white flex items-center justify-center text-kdark-800 hover:text-primary-700 hover:bg-surface-50 border border-surface-200/60 shadow-xs transition-all active:scale-95 disabled:opacity-40"
+                        title="Decrease quantity"
+                        aria-label="Decrease quantity"
                       >
-                        -
+                        <Minus className="w-4 h-4 stroke-[2.5]" />
                       </button>
-                      <span className="w-7 text-center text-sm font-bold text-kdark-900">
+                      <span className="min-w-[2rem] sm:min-w-[1.75rem] text-center text-base sm:text-sm font-bold text-kdark-900 select-none">
                         {quantity}
                       </span>
                       <button
                         onClick={() => updateQty(itemId, 1)}
-                        className="w-7 h-7 rounded-full bg-white flex items-center justify-center text-sm font-bold text-gray-700 hover:bg-surface-200 transition-colors"
+                        className="w-9 h-9 sm:w-8 sm:h-8 rounded-full bg-white flex items-center justify-center text-kdark-800 hover:text-primary-700 hover:bg-surface-50 border border-surface-200/60 shadow-xs transition-all active:scale-95"
+                        title="Increase quantity"
+                        aria-label="Increase quantity"
                       >
-                        +
+                        <Plus className="w-4 h-4 stroke-[2.5]" />
                       </button>
                     </div>
 
                     {/* Subtotal for line item */}
-                    <div className="text-right shrink-0 min-w-[80px]">
+                    <div className="text-right shrink-0 min-w-[76px] sm:min-w-[80px]">
                       <span className="text-base sm:text-lg font-bold text-kdark-900 font-serif">
                         ${(Number(price) * quantity).toFixed(2)}
                       </span>
@@ -130,8 +134,9 @@ const CartPage = () => {
                     {/* Delete button */}
                     <button
                       onClick={() => removeFromCart(itemId)}
-                      className="p-2 text-gray-400 hover:text-kaccent-600 hover:bg-kaccent-50 rounded-xl transition-colors shrink-0"
+                      className="w-9 h-9 sm:w-8 sm:h-8 flex items-center justify-center text-gray-400 hover:text-rose-600 hover:bg-rose-50 rounded-xl transition-all active:scale-95 shrink-0"
                       title="Remove item"
+                      aria-label="Remove item"
                     >
                       <Trash2 className="w-5 h-5" />
                     </button>

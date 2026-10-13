@@ -112,7 +112,7 @@ const ShippingPage = () => {
     const orderPayload = {
       customer: {
         name: formData.name,
-        email: formData.email || (user?.email ?? 'guest@store.local'),
+        email: formData.email || (user?.email ?? 'customer@seora.local'),
         phone: formData.phone,
         address: formData.address,
         city: formData.city,
@@ -134,7 +134,7 @@ const ShippingPage = () => {
       const newOrder = await addOrder(orderPayload);
       setConfirmedOrder(newOrder);
       setStep(4);
-      showToast('Order confirmed successfully! 🎉');
+      showToast('Order confirmed successfully!');
     } catch {
       showToast('Failed to place order. Please try again.');
     }
@@ -709,7 +709,7 @@ const ShippingPage = () => {
                   onClick={handleFinalConfirm}
                   className="w-full btn-primary py-4 text-base font-bold flex items-center justify-center gap-2 shadow-md hover:shadow-lg"
                 >
-                  Confirm & Place Order 🎉
+                  Confirm & Place Order
                 </button>
               </div>
             )}

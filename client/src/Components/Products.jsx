@@ -78,15 +78,15 @@ const Products = () => {
             className="bg-white border border-surface-200 rounded-xl px-3 py-1.5 text-sm font-medium text-kdark-800 outline-none focus:border-primary-500 shadow-2xs"
           >
             <option value="featured">Featured Collection</option>
-            <option value="rating">Top Rated (★)</option>
+            <option value="rating">Top Rated</option>
             <option value="price-asc">Price: Low to High</option>
             <option value="price-desc">Price: High to Low</option>
           </select>
         </div>
       </div>
 
-      {/* Product Grid */}
-      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-5 lg:gap-6">
+      {/* Product Grid - 1 card per row on mobile, responsive on larger screens */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-4 md:gap-5 lg:gap-6">
         {filtered.map((p) => (
           <ProductCard key={p.id || p._id} product={p} />
         ))}
